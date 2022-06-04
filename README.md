@@ -40,7 +40,7 @@
 ・フォロー・フォロワー機能(会員のみ)<br>
 
 ## 設計書
-　ER図：製作中・・・<br>
+　[ER図](https://drive.google.com/file/d/1NgMjxSC4NYquFc7aBhERbaAUIJ-3NLly/view?usp=sharing)<br>
 　テーブル定義書：製作中・・・<br>
 　アプリケーション詳細設計：製作中・・・
 
@@ -57,5 +57,5 @@
 
 ## 作成者
 大場 伶奈<br>
-GitHub : https://github.com/ReinaOoba<br>
-twitter : https://twitter.com/gamelife_love
+[GitHub](https://github.com/ReinaOoba/)<br>
+[Twitter](https://twitter.com/gamelife_love) 
