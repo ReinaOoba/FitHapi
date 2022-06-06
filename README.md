@@ -41,8 +41,8 @@
 
 ## 設計書
 　[ER図](https://drive.google.com/file/d/1NgMjxSC4NYquFc7aBhERbaAUIJ-3NLly/view?usp=sharing)<br>
-　テーブル定義書：製作中・・・<br>
-　アプリケーション詳細設計：製作中・・・
+　[テーブル定義書](https://docs.google.com/spreadsheets/d/1sY4nNChPRyPywEhMftMNfS9on1boijMeyn-xEay2bdw/edit?usp=sharing)<br>
+　[アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/13w1OPbMMmyBH_WnBls8iuWiXh1VqdfUSaUXq5EJV68Q/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -58,4 +58,4 @@
 ## 作成者
 大場 伶奈<br>
 [GitHub](https://github.com/ReinaOoba/)<br>
-[Twitter](https://twitter.com/gamelife_love) 
+[Twitter](https://twitter.com/gamelife_love)
