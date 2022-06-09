@@ -13,12 +13,12 @@
   <body>
     <div class="viewer">
       <header>
-      <% if current_user == nil && current_admin == nil %>
-        <%= render 'layouts/header_visitor' %>
-      <% elsif currentuser == nil && current_admin.present? %>
+      <% if admin_signed_in? %>
         <%= render 'layouts/header_admin' %>
-      <% else current_user == true && current_admin == nil %>
+      <% elsif user_signed_in? %>
         <%= render 'layouts/header_user' %>
+      <% else %>
+        <%= render 'layouts/header_visitor' %>
       <% end %>
       </header>
       <main class="mb-0">

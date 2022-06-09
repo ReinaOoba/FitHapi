@@ -6,7 +6,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string :name,               null: false, default: ""
       t.string :account,            null: false, default: ""
-      t.boolean :is_deleted,        null: false, default: ""
+      t.string :introduction,       default: ""
+      t.boolean :is_deleted,        null: false, default: "FALSE"
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
@@ -38,7 +39,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.timestamps null: false
     end
-
+    
+    add_index :users, :account,              unique: true
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true

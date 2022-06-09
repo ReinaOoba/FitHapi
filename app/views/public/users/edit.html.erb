@@ -1,0 +1,33 @@
+<div class="container py-3">
+ <div class="col-8 mx-2">
+  <h3 class="mini-title">アカウント情報</h3>
+    <%= form_with model: @user, local:true do |f| %>
+    <%= render 'public/shared/error_messages', resource: @user %>
+
+    <!--ニックネーム-->
+     <div class="form-group row">
+      <%= f.label :name, "ニックネーム" , class: "col-5" %>
+      <%= f.text_field :last_name, class: "form-control col-4" %>
+     </div>
+    <!--アカウント名-->
+     <div class="form-group row">
+      <%= f.label :account, "アカウント名", class: "col-5" %>
+      <%= f.text_field :account, class: "form-control col-4" %>
+     </div>
+    <!--メールアドレス-->
+    <div class="form-group row">
+     <%= f.label :email, "メールアドレス", class: "col-5" %>
+     <%= f.email_field :email, autocomplete: "email", class: "form-control col-4" %>
+    </div>
+    <!--自己紹介-->
+    <div class="form-group row">
+     <%= f.label :postal_code, "自己紹介", class: "col-5" %>
+     <%= f.text_area :postal_code, class: "form-control col-4" %>
+    </div>
+
+    <div class="actions text-center">
+     <%= f.submit "保存", class: "btn btn-success col-4" %>
+     <%= link_to "退会する", unsubscribe_path(current_user), class: "btn btn-danger col-4" %>
+    <% end %>
+    </div>
+ </div>

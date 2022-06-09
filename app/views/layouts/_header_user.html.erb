@@ -23,16 +23,16 @@
         <div class="menu">
           <ul class="navbar-nav mb-2">
             <li>
-              <%= link_to user_path, class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-cart-arrow-down"></i>マイページ<% end %>
+              <%= link_to user_path(current_user), class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-cart-arrow-down"></i>マイページ<% end %>
             </li>
             <li>
-              <%= link_to mytranings_path, class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-birthday-cake"></i>まいトレ<% end %>
+              <%= link_to user_mytrainings_path(current_user), class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-birthday-cake"></i>まいトレ<% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %>
             </li>
           </ul>
-          <!--<div class="search input-group"><!--検索窓-->-->
+          <!--<div class="search input-group"><!--検索窓-->
           <!--  %= form_with(url: search_path, local: true, method: :get) do |f| %>-->
           <!--    %= f.text_field :word, placeholder: "Search" %>-->
           <!--    %= f.button :type => "submit", class: "btn btn-outline-warning" do %>-->

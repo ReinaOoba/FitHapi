@@ -1,20 +1,8 @@
 Rails.application.routes.draw do
- # 会員用
-# URL /users/sign_in ...
-devise_for :users, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions',
-　passwords: 'public/passwords'
-}
- devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
-  end
-
 # 管理者用
-# URL /admin/sign_in ...
 devise_for :admin, controllers: {
   sessions: "admin/sessions",
-  passwords: 'admin/passwords'
+  # passwords: 'admin/passwords'
 }
 
 # 管理者ルーティング設定
@@ -34,27 +22,37 @@ namespace :admin do
   resources :weights, only: [:index, :show, :edit, :update, :destroy]
 end
 
-# ユーザールーティング設定
+# 会員用
+ devise_for :users, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions', 
+  passwords: 'public/passwords'
+}
+ devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#new_guest'
+  end
+
+# 会員ルーティング設定
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
   get 'help' => 'public/homes#help'
   get 'policy_agreement' => 'public/homes#policy_agreement'
-# 検索機能未実装
-# get "search" => "public/searches#search"
+# get "search" => "public/searches#search"　検索機能未実装
 
   scope module: :public do
-    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :users, except: [:destroy], param: :account do
       resources :relationships, only: [:create, :destroy]
+      get 'unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+      patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       resources :mytrainings
       resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
+      resources :favorites, only: [:index]
     end
     resources :articles do
       resources :comments, only: [:new, :edit, :create, :update, :destroy]
-      resource :favorites, only: [:new, :create, :destroy, :index]
+      resource :favorites, only: [:new, :create, :destroy]
     end
     get 'hot' => 'articles#hot'
     get 'new_arrival' => 'articles#new_arrival'
