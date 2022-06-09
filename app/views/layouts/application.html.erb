@@ -11,6 +11,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="viewer">
+      <header>
+      <% if current_user == nil && current_admin == nil %>
+        <%= render 'layouts/header_visitor' %>
+      <% elsif currentuser == nil && current_admin.present? %>
+        <%= render 'layouts/header_admin' %>
+      <% else current_user == true && current_admin == nil %>
+        <%= render 'layouts/header_user' %>
+      <% end %>
+      </header>
+      <main class="mb-0">
+        <div><%=render "layouts/notice" %></div>
+        <%= yield %>
+      </main>
+      <footer>
+        <%= render "layouts/footer" %>
+      </footer>
+    </div>
   </body>
 </html>
