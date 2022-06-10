@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :profile_image
+  has_one_attached :profile_image, dependent: :destroy
   # has_many :articles, dependent: :destroy
   # has_many :favorites, dependent: :destroy
   # has_many :mytrainings, dependent: :destroy
@@ -13,20 +13,16 @@ class User < ApplicationRecord
   validates :account, presence: true, uniqueness: true
   validates :email, presence: true
 
-# ゲスト機能
-  def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.password_confirmation = user.password
-      user.name = 'ゲスト'
-      user.account = 'guest'
-    end
-    sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
-  end
-
   def to_param
     account
+  end
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/blank-profile.png')
+      profile_image.attach(io: File.open(file_path), filename: 'blank-profile.png', content_type: 'image/png')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
 # 退会機能

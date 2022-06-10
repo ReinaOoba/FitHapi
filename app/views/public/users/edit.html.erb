@@ -4,10 +4,13 @@
     <%= form_with model: @user, local:true do |f| %>
     <%= render 'public/shared/error_messages', resource: @user %>
 
+    <!--アイコン-->
+      <%= f.file_field :profile_image, accept: "image/*" %>
+
     <!--ニックネーム-->
      <div class="form-group row">
       <%= f.label :name, "ニックネーム" , class: "col-5" %>
-      <%= f.text_field :last_name, class: "form-control col-4" %>
+      <%= f.text_field :name, class: "form-control col-4" %>
      </div>
     <!--アカウント名-->
      <div class="form-group row">
@@ -21,13 +24,13 @@
     </div>
     <!--自己紹介-->
     <div class="form-group row">
-     <%= f.label :postal_code, "自己紹介", class: "col-5" %>
-     <%= f.text_area :postal_code, class: "form-control col-4" %>
+     <%= f.label :introduction, "自己紹介", class: "col-5" %>
+     <%= f.text_area :introduction, class: "form-control col-4" %>
     </div>
 
     <div class="actions text-center">
      <%= f.submit "保存", class: "btn btn-success col-4" %>
-     <%= link_to "退会する", unsubscribe_path(current_user), class: "btn btn-danger col-4" %>
+     <%= link_to "退会する", user_unsubscribe_path(current_user), class: "btn btn-danger col-4" %>
     <% end %>
     </div>
  </div>
