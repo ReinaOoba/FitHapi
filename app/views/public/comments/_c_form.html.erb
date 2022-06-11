@@ -1,0 +1,7 @@
+<%= form_with(model: [article, comment], local: true) do |f| %>
+  <!--<div id="comment_error">-->
+  <!--  %= render "layouts/errors", obj: comment %>-->
+  <!--</div>-->
+  <%= f.text_area :text, rows:'5',placeholder: "コメントをここに入力",class: "w-100"%>
+  <%= f.submit "送信" %>
+<% end %>
