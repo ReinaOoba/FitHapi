@@ -14,8 +14,8 @@ namespace :admin do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy]
-  resources :comments, only: [:index, :delete]
-  resources :categories
+  resources :comments, only: [:index, :destroy]
+  resources :categories, only:[:index, :new, :edit, :create, :update, :destroy]
   resources :tags, only: [:index, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
   resources :mytrainings, only: [:index, :show, :edit, :update, :destroy]
@@ -25,7 +25,7 @@ end
 # 会員用
  devise_for :users, controllers: {
   registrations: "public/registrations",
-  sessions: 'public/sessions', 
+  sessions: 'public/sessions',
   passwords: 'public/passwords'
 }
  devise_scope :user do

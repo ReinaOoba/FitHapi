@@ -1,1 +1,36 @@
-<h3>カテゴリーの一覧</h3>
+<div class="col-8 mx-auto pb-3">
+  <h4 class="mini-title mt-3 mb-2">カテゴリー登録/一覧</h4>
+    <%= render "layouts/errors", obj: @new_category %>
+    <%= form_with model: @new_category, url: admin_categories_path, method: :post, local:true do |f| %>
+    <div class="form-group row">
+      <%= f.text_field :name, placeholder: "新規登録", class: "form-control col-4" %>
+      <%= f.submit "決定", class: "btn btn-success ml-3" %>
+    </div>
+    <% end %>
+
+    <% if @categories.exists? %>
+      <table class='table table-bordered table-hover text-center mb-0'>
+        <thead class="table-danger">
+          <tr>
+            <th>登録ワード</th>
+            <th>登録件数</th>
+            <th></th>
+          </tr>
+        </thread>
+        <tbody  class="table-warning">
+          <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= category.articles.count %>件</td>
+            <td class="col-3"><%= link_to "編集", edit_admin_category_path(category), class: "btn btn-success" %>
+                <%= link_to "削除", admin_category_path(category), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか?"  %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+    <div class="col-4 mx-auto mt-5">
+      <p class="mt-4 pb-3">登録済みカテゴリーはありません</p>
+    </div>
+    <% end %>
+</div>
