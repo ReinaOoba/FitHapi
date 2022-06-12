@@ -4,15 +4,15 @@
       <tr>
         <td>
           <%= link_to user_path(comment.user) do %>
-            <%= image_tag comment.user.get_profile_image, size: "100x100" %><br>
+            <%= image_tag comment.user.get_profile_image(100,100) %><br>
             <%= comment.user.name %>
           <% end %>
         </td>
         <td><%= comment.text %></td>
         <td>
           <% if comment.user == current_user %>
-            <%= link_to "編集", edit_article_comment_path(comment), class: "btn btn-danger" %>
-            <%= link_to "削除", article_comment_path(article, comment), method: :delete, class: "btn btn-danger",  %>
+            <%= link_to "編集", edit_article_comment_path(article, comment), class: "btn btn-success" %>
+            <%= link_to "削除", article_comment_path(article, comment), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </td>
       </tr>

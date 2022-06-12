@@ -7,7 +7,7 @@ class Public::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @new_comment = Comment.new
+    @comment = Comment.new
   end
 
   def edit

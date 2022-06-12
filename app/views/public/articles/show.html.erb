@@ -32,10 +32,14 @@
       <div class="article_reaction">
         <p>いいね(未実装)</p>
         <!--%= render "favorites/favorites", article: @article %>-->
-        <p>コメント(未実装)</p>
-        <%= render "comments/c_form", article: @article, comment: @comments %>
-        <p>コメント一覧(未実装)</p>
-        <%= render "comments/c_index", article: @article %>
+        <p>コメント</p>
+        <%= render "public/comments/c_form", article: @article, comment: @comment %>
+        <p>コメント一覧</p>
+        <% if @article.comments.exists? %>
+          <%= render "public/comments/c_index", article: @article %>
+        <% else %>
+          <p>コメントはまだありません</p>
+        <% end %>
       </div>
     </div>
   </div>

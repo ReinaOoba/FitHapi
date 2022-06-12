@@ -4,13 +4,28 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.article_id = @article.id
     @comment.save
-    render "articles/show"
+    redirect_to article_path(@article), notice: 'コメントしました'
+  end
+
+  def edit
+    @comment = Comment.find_by(id: params[:id], article_id: params[:article_id])
+    @article = @comment.article
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    article = @comment.article
+    if @comment.update(comment_params)
+      redirect_to article_path(article), notice: 'コメントをしました'
+    else
+      render :edit
+    end
   end
 
   def destroy
     Comment.find_by(id: params[:id], article_id: params[:article_id]).destroy
-    @article = Article.find_by(params[:article_id])
-    render "articles/show"
+    article = Article.find_by(params[:article_id])
+    redirect_to article_path(article), notice: '削除完了しました'
   end
 
   private

@@ -16,7 +16,7 @@
         <td><%= link_to article.user.name, admin_user_path(article.user) %></td>
         <td><%= article.category.name %></td>
         <td>いいね数：<!--%= article.favorites.count %>--></td>
-        <td>コメント数：<!--%= article.comments.count %>--></td>
+        <td>コメント数：<%= article.comments.count %>件</td>
       </tr>
     <% end %>
   </tbody>

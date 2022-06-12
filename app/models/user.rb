@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   # has_many :favorites, dependent: :destroy
   has_many :my_trainings, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :account, presence: true, uniqueness: true
