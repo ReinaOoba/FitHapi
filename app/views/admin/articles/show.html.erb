@@ -31,10 +31,8 @@
       <div class="article_reaction">
         <p>いいね(未実装)</p>
         <!--%= render "favorites/favorites", article: @article %>-->
-        <p>コメント(未実装)</p>
-        <!--%= render "comments/form"-->
-        <p>コメント一覧(未実装)</p>
-        <!--%= render "comments/index", article: @article %>-->
+        <p>コメント一覧</p>
+        <%= render "admin/comments/c_index", article: @article %>
       </div>
     </div>
   </div>

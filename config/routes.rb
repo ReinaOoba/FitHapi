@@ -9,14 +9,15 @@ devise_for :admin, controllers: {
 namespace :admin do
   root to: 'homes#top'
   # get "search" => "searches#search"
-  resources :users, only: [:index,:show,:edit,:update] do
+  resources :users, only: [:index,:show,:edit,:update], param: :account do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     get 'articles' => 'users#articles'
     resources :my_trainings, only: [:index]
   end
-  resources :articles, only: [:index, :show, :edit, :update, :destroy]
-  resources :comments, only: [:index, :destroy]
+  resources :articles, only: [:index, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:destroy]
+  end
   resources :categories, only:[:index, :new, :edit, :create, :update, :destroy]
   resources :tags, only: [:index, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
