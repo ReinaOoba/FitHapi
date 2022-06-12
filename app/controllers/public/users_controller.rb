@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
-  # before_action :ensure_correct_user, only: [:edit, :update, :withdrawal]
+  before_action :ensure_correct_user, only: [:edit, :update, :withdrawal]
 
   def show
     @user = User.find_by(account: params[:account])
+    @profile_image =  @user.profile_image
   end
 
   def edit

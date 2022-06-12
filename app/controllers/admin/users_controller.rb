@@ -23,8 +23,15 @@ class Admin::UsersController < ApplicationController
     end
  end
 
+ def articles
+   @user = User.find_by(account: params[:user_id])
+   @articles = @user.articles.page(params[:page]).per(10)
+ end
+
  private
+ 
  def user_params
     params.require(:user).permit(:account, :name, :email, :introduction, :is_deleted)
  end
+ 
 end

@@ -3,30 +3,30 @@
    <%= f.label :タイトル, class: "col-3" %>
    <%= f.text_field :title %>
   </div>
-  
+
   <div class="form-group row">
    <%= f.label :本文, class: "col-3" %>
    <%= f.text_area :text %>
   </div>
-  
+
   <div class="form-group row">
    <%= f.label :カテゴリー, class: "col-3" %>
    <%= f.collection_select(:category_id, categories, :id, :name, {prompt: "--選択してください--"}) %>
   </div>
-  
+
   <div class="form-group row">
    <%= f.label "タグ(全角スペースで区切ると複数タグを登録できます)", class: "col-6" %>
    <%= f.text_field :name, class: "form-control" %>
   </div>
-  
+
   <div class="form-group row">
    <%= f.label :画像, class: "col-3" %>
    <%= f.file_field :article_image, accept: "image/*" %>
   </div>
-  
+
   <div class="form-group row pb-3 mb-0">
    <%= f.label :公開設定, class: "col-3" %>
    <%= f.select :status, Article.statuses.keys.to_a, {}, { class: 'article-opened' } %>
-   <%= f.submit "決定", class:"btn btn-success offset-6" %>
+   <%= f.submit "決定", class: "btn btn-success offset-6" %>
   </div>
 <% end %>

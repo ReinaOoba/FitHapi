@@ -7,6 +7,7 @@ class Public::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @new_comment = Comment.new
   end
 
   def edit
@@ -64,7 +65,7 @@ class Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:article_image, :title, :text, :user_id, :category_id, :taglist_id, :status).merge(user_id: current_user.id)
+    params.require(:article).permit(:article_image, :title, :text, :category_id, :taglist_id, :status).merge(user_id: current_user.id)
   end
 
 

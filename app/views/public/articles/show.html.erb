@@ -33,9 +33,9 @@
         <p>いいね(未実装)</p>
         <!--%= render "favorites/favorites", article: @article %>-->
         <p>コメント(未実装)</p>
-        <!--%= render "comments/form"-->
+        <%= render "comments/c_form", article: @article, comment: @comments %>
         <p>コメント一覧(未実装)</p>
-        <!--%= render "comments/index", article: @article %>-->
+        <%= render "comments/c_index", article: @article %>
       </div>
     </div>
   </div>
