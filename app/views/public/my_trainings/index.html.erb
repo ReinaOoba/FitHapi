@@ -1,0 +1,36 @@
+<div class="container">
+  <h3><%= @user.name %>さんのまいトレ</h3>
+
+<% if @my_trainings.exists? %>
+  <div class="offset-7 col-2 mt-4">
+    <%= link_to new_my_training_path do %>
+      <i class="fas fa-plus-circle fa-2x text-right"></i>
+    <% end %>
+  </div>
+  <table class='table table-bordered table-hover text-center mb-0'>
+    <thead class="table-danger">
+      <tr>
+        <th>トレーニングメニュー</th>
+        <th>セット数</th>
+        <th>メモ</th>
+        <th></th>
+      </tr>
+    </thread>
+    <tbody  class="table-warning">
+      <% @my_trainings.each do |my_training| %>
+      <tr>
+        <td><%= my_training.menu %></td>
+        <td><%= my_training.set %></td>
+        <td><%= my_training.note %></td>
+        <td><%= link_to "詳細を見る", my_training_path(my_training), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>登録済みのまいトレはありません～！</p>
+  <% if @user.id == current_user.id %>
+    <%=link_to "まいトレ作成！", new_my_training_path, class: "btn btn-success" %>
+  <% end %>
+<% end %>
+</div>

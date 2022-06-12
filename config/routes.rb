@@ -12,13 +12,15 @@ namespace :admin do
   resources :users, only: [:index,:show,:edit,:update] do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    get 'articles' => 'users#articles'
+    resources :my_trainings, only: [:index]
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy]
   resources :comments, only: [:index, :destroy]
   resources :categories, only:[:index, :new, :edit, :create, :update, :destroy]
   resources :tags, only: [:index, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
-  resources :mytrainings, only: [:index, :show, :edit, :update, :destroy]
+  resources :my_trainings, only: [:show, :destroy]
   resources :weights, only: [:index, :show, :edit, :update, :destroy]
 end
 
@@ -42,13 +44,13 @@ end
   scope module: :public do
     resources :users, except: [:destroy], param: :account do
       resources :relationships, only: [:create, :destroy]
+      resources :my_trainings, only: [:index]
+      resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
+      resources :favorites, only: [:index]
       get 'unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
       patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
-      resources :mytrainings
-      resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
-      resources :favorites, only: [:index]
     end
     resources :articles do
       resources :comments, only: [:new, :edit, :create, :update, :destroy]
@@ -56,6 +58,8 @@ end
     end
     get 'hot' => 'articles#hot'
     get 'new_arrival' => 'articles#new_arrival'
+    resources :my_trainings, only: [:new, :show, :create, :edit, :update, :destroy]
+    resources :comments, only: [:edit, :update, :destroy]
     resources :categories, only: [:index]
     resources :tags, only: [:new, :create, :index]
   end

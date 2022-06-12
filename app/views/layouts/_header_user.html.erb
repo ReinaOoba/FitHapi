@@ -29,7 +29,7 @@
               <%= link_to user_path(current_user), class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-cart-arrow-down"></i>マイページ<% end %>
             </li>
             <li>
-              <%= link_to user_mytrainings_path(current_user), class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-birthday-cake"></i>まいトレ<% end %>
+              <%= link_to user_my_trainings_path(current_user), class: 'nav-link btn btn-outline-secondary mr-2' do %><i class="fas fa-birthday-cake"></i>まいトレ<% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %>

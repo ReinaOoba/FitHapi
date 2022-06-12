@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>まいトレ詳細</h3>
+
+  <h4>トレーニング名</h4>
+    <%= @my_training.menu %>
+  <h4>回数・セット数</h4>
+    <%= @my_training.set %>
+  <h4>メモ</h4>
+    <%= @my_training.note %>
+  <%= link_to "一覧に戻る", user_my_trainings_path(@my_training.user), class: "btn btn-info" %>
+  <% if @my_training.user_id == current_user.id %>
+    <%= link_to "編集", edit_my_training_path(@my_training), class: "btn btn-success" %>
+    <%= link_to "削除", my_training_path(@my_training), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか?" %>
+  <% end %>
+</div>
+
