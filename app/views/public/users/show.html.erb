@@ -6,22 +6,39 @@
       <h3><%= @user.name %>さんのページ</h3>
     <% end %>
     <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
+
+    <% unless @user == current_user %>
+      <%= render "public/relationships/follow_btn", user: @user %>
+    <% end %>
+
     <div class="row">
       <div class="col-8">
         <table class="table table-bordered ml-5">
           <tbody>
             <tr>
-              <th class="col-4 text-center">ニックネーム</th>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <th class="col-4 text-center">アカウント名</th>
-              <td><%= @user.account %></td>
+              <th class="col-4 text-center">ユーザー名</th>
+              <td><%= @user.name %>@<%= @user.account %></td>
             </tr>
             <tr>
               <th class="col-4 text-center">自己紹介</th>
               <td><%= @user.introduction %></td>
             </tr>
+            <tr>
+            <th class="col-4 text-center">フォロー</th>
+            <td>
+              <%= link_to user_followings_path(@user) do %>
+                <%= @user.followings.count %> 人
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center">フォロワー</th>
+            <td>
+              <%= link_to user_followers_path(@user) do %>
+                <%= @user.followers.count %> 人
+              <% end %>
+            </td>
+          </tr>
           <tbody>
         </table>
       </div>
@@ -33,15 +50,21 @@
     <% end %>
     <div class="row">
       <div class="col-8 mx-2 ml-5">
-        <h4 class="title">過去の投稿記事
-          <!---->
-        </h4>
-        <h4 class="title">まいトレ
+        <div class= "link-lists row mt-3">
+          <h4 class="title">投稿した記事</h4>
+          <%= link_to "一覧を見る", user_post_articles_path(@user), class: "btn btn-primary ml-4" %>
+          <% if @user == current_user %>
+            <%= link_to "非公開設定の記事を見る", user_private_articles_path(@user), class: "btn btn-primary ml-4" %>
+          <% end %>
+        </div>
+        <div class="link-lists row mt-3">
+          <h4 class="title">まいトレ</h4>
           <%= link_to "一覧を見る", user_my_trainings_path(@user), class: "btn btn-primary ml-4" %>
-        </h4>
-        <h4 class="title">いいねした記事
-          <!--%= link_to "一覧を見る", user_favorites_path, class:"btn btn-primary" %>-->
-        </h4>
+        </div>
+        <div class="link-lists row mt-3">
+          <h4 class="title">いいねした記事</h4>
+          <%= link_to "一覧を見る", user_favorite_articles_path(@user), class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
   </div>

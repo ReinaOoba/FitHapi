@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="search input-group"><!--検索窓-->
+    <p>検索機能は未実装！</p>
+    <!--%= form_with(url: search_path, local: true, method: :get) do |f| %>-->
+    <!--  %= f.text_field :word, placeholder: "Search" %>-->
+    <!--    %= f.button :type => "submit", class: "btn btn-outline-warning" do %>-->
+    <!--    <i class="fas fa-search"></i>-->
+    <!--  % end %>-->
+    <!--% end %>-->
+  </div>
+
+  <div class="category_index">
+    <div class="col-3">
+      <div class="card">
+        <h6 class="card-header text-center">人気カテゴリー</h6>
+        <div class="card-body">
+          <div class="card-text" style="line-height:2.5rem; text-align:center">
+            <% categories.each do |category| %>
+              <div><%= link_to category.name, category_path(category) %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to categories_path do %>
+              <font size="1">全てのカテゴリーを見る</font>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tag_index mt-3">
+    <div class="col-3">
+      <div class="card">
+        <h6 class="card-header text-center">人気のタグ</h6>
+        <div class="card-body">
+          <div class="card-text" style="line-height:2.5rem; text-align:center">
+            <% tags.each do |tag| %>
+              <div><%= link_to tag.name, tag_path(tag) %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to tags_path do %>
+              <font size="1">全てのタグを見る</font>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

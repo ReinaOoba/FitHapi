@@ -2,7 +2,7 @@ class Public::ArticlesController < ApplicationController
   before_action :authenticate_user!, only:[:edit, :new, :create, :update, :destroy]
 
   def index
-    @articles = Article.all.page(params[:page]).per(10)
+    @articles = Article.where(status: 0).page(params[:page]).per(10)
   end
 
   def show
@@ -54,12 +54,13 @@ class Public::ArticlesController < ApplicationController
     redirect_to root_path
   end
 
-  def  new_arrival
-    @articles = Article.limit(100).order(created_at: :DESC).page(params[:page]).per(10)
+  def new_arrival
+    @articles = Article.limit(100).where(status: 0).order(created_at: :DESC).page(params[:page])
   end
 
-  def  hot
-    # @articles = Article.all.per(10) 未実装やで！
+  def hot
+    articles = Article.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    @articles = Kaminari.paginate_array(articles).page(params[:page]).per(2)
   end
 
   private

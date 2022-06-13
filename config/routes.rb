@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 # 管理者用
 devise_for :admin, controllers: {
   sessions: "admin/sessions",
-  # passwords: 'admin/passwords'
 }
 
 # 管理者ルーティング設定
@@ -12,7 +11,8 @@ namespace :admin do
   resources :users, only: [:index,:show,:edit,:update], param: :account do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-    get 'articles' => 'users#articles'
+    get 'post_articles' => 'users#post_articles'
+    get 'favorite_articles' => 'users#favorite_articles', as: 'favorite_articles'
     resources :my_trainings, only: [:index]
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy] do
@@ -35,6 +35,7 @@ end
     post 'users/guest_sign_in', to: 'public/sessions#new_guest'
   end
 
+
 # 会員ルーティング設定
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
@@ -44,7 +45,7 @@ end
 
   scope module: :public do
     resources :users, except: [:destroy], param: :account do
-      resources :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
       resources :my_trainings, only: [:index]
       resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
       resources :favorites, only: [:index]
@@ -52,17 +53,22 @@ end
       patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      get 'post_articles' => 'users#post_articles'
+      get 'private_articles' => 'users#private_articles'
+      get 'favorite_articles' => 'users#favorite_articles', as: 'favorite_articles'
     end
+
     resources :articles do
       resources :comments, only: [:new, :edit, :create, :update, :destroy]
-      resource :favorites, only: [:new, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
+
     get 'hot' => 'articles#hot'
     get 'new_arrival' => 'articles#new_arrival'
     resources :my_trainings, only: [:new, :show, :create, :edit, :update, :destroy]
     resources :comments, only: [:edit, :update, :destroy]
-    resources :categories, only: [:index]
-    resources :tags, only: [:new, :create, :index]
+    resources :categories, only: [:index, :show]
+    resources :tags, only: [:create, :index, :show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

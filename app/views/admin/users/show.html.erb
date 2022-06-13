@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="mini-title">
-      <%= @user.name %> @ <%= @user.account %>さんの会員詳細
+      <%= @user.name %> @ <%= @user.account %>さんのユーザー詳細
     </div>
   </div>
   <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
@@ -34,8 +34,28 @@
             <td><%= @user.email %></td>
           </tr>
           <tr>
+            <th class="col-4 text-center">フォロー</th>
+            <td>
+              <!--% link_to admin_user_followings_path(@user) do %>-->
+                <!--%= @user.follows.counts %> 件-->
+              <!--% end %>-->
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center">フォロワー</th>
+            <td>
+              <!--% link_to admin_user_followers_path(@user) do %>-->
+                <!--%= @user.followed.counts %> 件-->
+              <!--% end %>-->
+            </td>
+          </tr>
+          <tr>
             <th class="col-4 text-center">投稿一覧（<%= @user.articles.count %>件）</th>
-            <td><%= link_to "一覧", admin_user_articles_path(@user) %></td>
+            <td><%= link_to "一覧", admin_user_post_articles_path(@user) %></td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center">いいね一覧（<%= @user.favorites.count %>件）</th>
+            <td><%= link_to "一覧", admin_user_favorite_articles_path(@user) %></td>
           </tr>
           <tr>
             <th class="col-4 text-center">まいトレ一覧（<%= @user.my_trainings.count %>件）</th>

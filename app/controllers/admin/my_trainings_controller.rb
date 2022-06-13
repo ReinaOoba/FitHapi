@@ -1,6 +1,6 @@
 class Admin::MyTrainingsController < ApplicationController
   def index
-    @user = User.find_by(account: params[:user_id])
+    @user = User.find_by(account: params[:user_account])
     @my_trainings = @user.my_trainings
   end
 
