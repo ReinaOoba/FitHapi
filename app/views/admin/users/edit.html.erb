@@ -1,45 +1,44 @@
 <div class="container py-3">
- <div class="col-8 mx-2">
-  <h3 class="mini-title">アカウント情報</h3>
-    <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local:true do |f| %>
+  <div class="col-8 mx-2">
+    <h3 class="mini-title">アカウント情報</h3>
+    <%= form_with model: @user, url: admin_user_path(@user), method: :patch, local:true do |f| %>
     <%= render 'public/shared/error_messages', resource: @user %>
 
     <!--アイコン-->
-      <%= f.file_field :profile_image, accept: "image/*" %>
+    <%= f.file_field :profile_image, accept: "image/*" %>
 
     <!--ニックネーム-->
-     <div class="form-group row">
+    <div class="form-group row">
       <%= f.label :name, "ニックネーム" , class: "col-5" %>
       <%= f.text_field :name, class: "form-control col-4" %>
-     </div>
+    </div>
     <!--アカウント名-->
-     <div class="form-group row">
+    <div class="form-group row">
       <%= f.label :account, "アカウント名", class: "col-5" %>
       <%= f.text_field :account, class: "form-control col-4" %>
-     </div>
+    </div>
     <!--メールアドレス-->
     <div class="form-group row">
-     <%= f.label :email, "メールアドレス", class: "col-5" %>
-     <%= f.email_field :email, autocomplete: "email", class: "form-control col-4" %>
+      <%= f.label :email, "メールアドレス", class: "col-5" %>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control col-4" %>
     </div>
     <!--自己紹介-->
     <div class="form-group row">
-     <%= f.label :introduction, "自己紹介", class: "col-5" %>
-     <%= f.text_area :introduction, class: "form-control col-4" %>
+      <%= f.label :introduction, "自己紹介", class: "col-5" %>
+      <%= f.text_area :introduction, class: "form-control col-4" %>
     </div>
     <div class="form-group row">
-        <%= f.label :is_deleted, '会員ステータス', class: "col-3" %>
-        <div class="custom-control custom-radio">
-          <%= f.radio_button :is_deleted, false %>
-          <%= f.label :is_active, "有効", class: "mr-3" %>
-          <%= f.radio_button :is_deleted, true %>
-          <%= f.label :is_active, "退会" %>
-        </div>
+      <%= f.label :is_deleted, '会員ステータス', class: "col-3" %>
+      <div class="custom-control custom-radio">
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_active, "有効", class: "mr-3" %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_active, "退会" %>
       </div>
-
-    <div class="actions text-center">
-     <%= f.submit "保存", class: "btn btn-success col-4" %>
     </div>
+    <div class="actions text-center">
+     <%= f.submit "保存", class: "btn btn-info col-3" %>
     <% end %>
-
+    <%= link_to "ユーザー詳細に戻る", admin_user_path(@user), class: "btn btn-success" %>
+    </div>
  </div>

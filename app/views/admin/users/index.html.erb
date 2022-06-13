@@ -17,10 +17,10 @@
           </thead>
           <tbody class="tbody">
           <% @users.each do |user| %>
-            <tr onclick='window.location="<%= '/admin/users/' + user.id.to_s %>"' role="link">
+            <tr>
               <td><%= user.id %></td>
               <td>
-              <%= link_to user.account, admin_user_path(user.id), class: "text-dark" %>
+              <%= link_to user.account, admin_user_path(user), class: "text-dark" %>
               </td>
               <td><%= user.email %></td>
               <td>

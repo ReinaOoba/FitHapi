@@ -1,0 +1,23 @@
+<table class="table  table-bordered table-hover text-center">
+  <% users.each do |user| %>
+    <tbody>
+      <tr>
+        <td style="width: 40%">
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.get_profile_image(50,50), style: "border-radius: 50%" %>
+            <%= user.name %>@<%= user.account %>
+          <% end %>
+        </td>
+        <td style="width: 50%"><%= user.introduction %></td>
+        <td style="width: 100%">
+          <% if user == current_user %>
+            <p>自分です</p>
+          <% else %>
+            <%= render "public/relationships/follow_btn", user: user %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
