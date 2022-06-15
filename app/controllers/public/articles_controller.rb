@@ -2,11 +2,12 @@ class Public::ArticlesController < ApplicationController
   before_action :authenticate_user!, only:[:edit, :new, :create, :update, :destroy]
 
   def index
-    @articles = Article.where(status: 0).page(params[:page]).per(10)
+    @articles = Article.where(status: 0).page(params[:page])
   end
 
   def show
     @article = Article.find(params[:id])
+    @article_tags = @article.tags
     @comment = Comment.new
   end
 
@@ -59,8 +60,9 @@ class Public::ArticlesController < ApplicationController
   end
 
   def hot
-    articles = Article.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
-    @articles = Kaminari.paginate_array(articles).page(params[:page]).per(2)
+    articles = Article.where(status: 0)
+    articles_hot = articles.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    @articles = Kaminari.paginate_array(articles_hot).page(params[:page]).per(2)
   end
 
   private

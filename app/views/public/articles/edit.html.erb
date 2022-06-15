@@ -4,6 +4,6 @@
   <div class="container py-3">
      <h3 class="mini-title mt-3">編集</h3>
     <%= render partial: "form", locals: {article: @article, categories: @categories} %>
-    <%= link_to "削除", article_path(@article), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか?"  %>
+    <%= link_to "削除", article_path(@article), method: :delete, class: "btn btn-danger mt-3", "data-confirm" => "本当に削除しますか?"  %>
   </div>
 </div>
