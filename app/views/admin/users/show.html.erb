@@ -36,8 +36,8 @@
           <tr>
             <th class="col-4 text-center">フォロー</th>
             <td>
-              <!--% link_to admin_user_followings_path(@user) do %>-->
-                <!--%= @user.follows.counts %> 件-->
+              <!--\\% link_to admin_user_followings_path(@user) do %>-->
+                <%= @user.follows.counts %>人
               <!--% end %>-->
             </td>
           </tr>
@@ -45,7 +45,7 @@
             <th class="col-4 text-center">フォロワー</th>
             <td>
               <!--% link_to admin_user_followers_path(@user) do %>-->
-                <!--%= @user.followed.counts %> 件-->
+                <%= @user.followed.counts %>人
               <!--% end %>-->
             </td>
           </tr>

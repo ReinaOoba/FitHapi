@@ -11,22 +11,30 @@
 
   <div>
     <div>
-      <%= @article.text %>
+      <%= safe_join(@article.text.split("\n"),tag(:br)) %>
     </div>
     <div class="article_info col-4">
       <table class="table table-borderless">
         <tbody>
           <tr>
             <th>カテゴリー</th>
-            <td><%= @article.category.name %></td>
+            <td><%= link_to @article.category.name, category_path(@article.category) %></td>
           </tr>
           <tr>
             <th>タグ</th>
-            <td><%= @article.tags.map(&:name).join(', ') %></td>
+            <td>
+              <% @article_tags.each do |tag|%>
+                <%= link_to tag.name, tag_path(tag) %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th>投稿日</th>
-            <td><%= @article.created_at %></td>
+            <td><%= @article.created_at.to_s(:datetime_jp) %></td>
+          </tr>
+          <tr>
+            <th>公開設定</th>
+            <td><%= @article.status %></td>
           </tr>
           <tr>
         </tbody>
@@ -38,14 +46,16 @@
       <% end %>
 
       <div class="article_reaction">
-        <%= render "public/favorites/favorites", article: @article %>
+        <% if user_signed_in? %>
+          <%= render "public/favorites/favorites", article: @article %>
 
-        <% unless @article.user == current_user %>
-          <%= render "public/relationships/follow_btn", user: @article.user %>
+          <% unless @article.user == current_user %>
+            <%= render "public/relationships/follow_btn", user: @article.user %>
+          <% end %>
+
+          <p>コメント</p>
+          <%= render "public/comments/c_form", article: @article, comment: @comment %>
         <% end %>
-
-        <p>コメント</p>
-        <%= render "public/comments/c_form", article: @article, comment: @comment %>
 
         <p>コメント一覧</p>
         <% if @article.comments.exists? %>
