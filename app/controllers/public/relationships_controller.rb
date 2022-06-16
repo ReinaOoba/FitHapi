@@ -19,8 +19,8 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followers
-    user = User.find_by(account: params[:user_account])
-    @users = user.followers
+    @user = User.find_by(account: params[:user_account])
+    @users = @user.followers
   end
 
 end

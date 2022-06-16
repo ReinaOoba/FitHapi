@@ -18,11 +18,9 @@
               <div><%= link_to category.name, category_path(category) %></div>
             <% end %>
           </div>
-          <div>
-            <%= link_to categories_path do %>
+            <%= link_to categories_path, class: "link-btn" do %>
               <font size="1">全てのカテゴリーを見る</font>
             <% end %>
-          </div>
         </div>
       </div>
   </div>
@@ -36,11 +34,9 @@
               <div><%= link_to tag.name, tag_path(tag) %></div>
             <% end %>
           </div>
-          <div>
-            <%= link_to tags_path do %>
+            <%= link_to tags_path, class: "link-btn" do %>
               <font size="1">全てのタグを見る</font>
             <% end %>
-          </div>
         </div>
       </div>
   </div>

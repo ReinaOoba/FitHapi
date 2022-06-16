@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="mini-title">会員一覧</div>
+      <h3 class="mini-title">会員一覧</h3>
     </div>
   </div>
     <div class="row justify-content-center">
       <div class="col-11">
-        <table class="table table-bordered table-hover text-center">
+        <table class="table table-inverse table-hover text-center">
           <thead class="thead">
             <tr>
-              <th style="width: 10%">ユーザーID</th>
-              <th style="width: 30%">アカウント名</th>
-              <th style="width: 30%">メールアドレス</th>
-              <th style="width: 30%">会員ステータス</th>
+              <th style="width: 15%">ユーザーID</th>
+              <th style="width: 33%">アカウント名</th>
+              <th style="width: 32%">メールアドレス</th>
+              <th style="width: 20%">会員ステータス</th>
             </tr>
           </thead>
           <tbody class="tbody">
@@ -20,7 +20,9 @@
             <tr>
               <td><%= user.id %></td>
               <td>
-              <%= link_to user.account, admin_user_path(user), class: "text-dark" %>
+              <%= link_to admin_user_path(user), class: "text-dark" do %>
+                <%= user.name %>@<%= user.account %>
+              <% end %>
               </td>
               <td><%= user.email %></td>
               <td>

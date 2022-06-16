@@ -1,8 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="mini-title">
-      <%= @user.name %> @ <%= @user.account %>さんのユーザー詳細
-    </div>
+    <h3><%= @user.name %>@<%= @user.account %>さんのユーザー詳細</h3>
   </div>
   <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
   <div class="row">
@@ -36,17 +34,17 @@
           <tr>
             <th class="col-4 text-center">フォロー</th>
             <td>
-              <!--\\% link_to admin_user_followings_path(@user) do %>-->
-                <%= @user.follows.counts %>人
-              <!--% end %>-->
+              <%= link_to admin_user_followings_path(@user) do %>
+                <%= @user.followings.count %>人
+              <% end %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center">フォロワー</th>
             <td>
-              <!--% link_to admin_user_followers_path(@user) do %>-->
-                <%= @user.followed.counts %>人
-              <!--% end %>-->
+              <%= link_to admin_user_followers_path(@user) do %>
+                <%= @user.followers.count %>人
+              <% end %>
             </td>
           </tr>
           <tr>

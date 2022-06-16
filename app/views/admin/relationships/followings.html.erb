@@ -1,1 +1,8 @@
-<h3>会員別フォローしてる人一覧（＝有名人）</h3>
+<div class="container">
+  <h3><%= @user.name %>@<%= @user.account %>のフォロー一覧（＝有名人）</h3>
+  <% if @users.exists? %>
+    <%= render "admin/relationships/follow_list", users: @users %>
+  <% else %>
+    <p>フォローしているユーザーはいません</p>
+  <% end %>
+</div>

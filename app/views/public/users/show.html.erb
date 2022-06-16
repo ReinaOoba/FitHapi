@@ -5,12 +5,14 @@
     <% else %>
       <h3><%= @user.name %>さんのページ</h3>
     <% end %>
-    <div class="user-image">
+    <div class="user_page-user_image">
       <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
     </div>
 
     <% if user_signed_in? && @user != current_user %>
-      <%= render "public/relationships/follow_btn", user: @user %>
+      <div class="user_page-follow_btn">
+        <%= render "public/relationships/follow_btn", user: @user %>
+      </div>
     <% end %>
 
     <div class="row">

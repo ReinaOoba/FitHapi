@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <div class="viewer">
+    <div id="viewer">
       <header>
       <% if admin_signed_in? %>
         <%= render 'layouts/header_admin' %>
@@ -20,10 +20,12 @@
       <% else %>
         <%= render 'layouts/header_visitor' %>
       <% end %>
+      <%=render "layouts/notice" %>
       </header>
-      <main class="mb-0">
-        <div><%=render "layouts/notice" %></div>
-        <%= yield %>
+      <main class="mt-3 mb-3">
+        <div id="contents">
+          <%= yield %>
+        </div>
       </main>
       <footer>
         <%= render "layouts/footer" %>
