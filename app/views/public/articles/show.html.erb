@@ -48,14 +48,17 @@
 
       <div class="article_reaction">
         <% if user_signed_in? %>
-          <%= render "public/favorites/favorites", article: @article %>
-
+            <div id="favorite_btn_<%= @article.id %>">
+              <%= render "public/favorites/favorites", article: @article %>
+            </div>
           <% unless @article.user == current_user %>
-            <%= render "public/relationships/follow_btn", user: @article.user %>
+            <div id="relationship-btn_<%= @article.id %>">
+              <%= render "public/relationships/follow_btn", user: @article.user %>
+            </div>
           <% end %>
 
-          <p>コメント</p>
-          <%= render "public/comments/c_form", article: @article, comment: @comment %>
+            <p>コメント</p>
+            <%= render "public/comments/c_form", article: @article, comment: @comment %>
         <% end %>
 
         <p>コメント一覧</p>
