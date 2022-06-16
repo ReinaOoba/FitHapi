@@ -58,16 +58,15 @@
           <% end %>
 
             <p>コメント</p>
-            <%= render "public/comments/c_form", article: @article, comment: @comment %>
+            <div id="new_comment">
+              <%= render "public/comments/c_form", article: @article, comment: @comment %>
+            </div>
         <% end %>
 
         <p>コメント一覧</p>
-        <% if @article.comments.exists? %>
+        <div id="comments">
           <%= render "public/comments/c_index", article: @article %>
-        <% else %>
-          <p>コメントはまだありません</p>
-        <% end %>
-
+        </div>
       </div>
     </div>
   </div>

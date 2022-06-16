@@ -4,7 +4,8 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.article_id = @article.id
     if @comment.save
-      redirect_to article_path(@article), notice: 'コメントしました'
+       render "comments", notice: 'コメントしました'
+      # redirect_to article_path(@article), notice: 'コメントしました'
     else
       redirect_to article_path(@article), notice: 'コメント欄に何も入ってません'
     end
@@ -27,8 +28,9 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     Comment.find_by(id: params[:id], article_id: params[:article_id]).destroy
-    article = Article.find_by(params[:article_id])
-    redirect_to article_path(article), notice: '削除完了しました'
+    @article = Article.find_by(params[:article_id])
+    render "comments"
+    # redirect_to article_path(article), notice: '削除完了しました'
   end
 
   private
