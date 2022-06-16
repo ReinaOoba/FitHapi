@@ -1,0 +1,11 @@
+<div class="container">
+    <h3><%= @category.name %>カテゴリーの記事</h3>
+    <% if @articles.exists? %>
+      <%= render "list", articles: @articles %>
+    <% else %>
+      <p>投稿記事はありません</p>
+    <% end %>
+    <div class="text-center mb-3">
+      <%= link_to "トップページへ戻る", admin_root_path, class: "btn btn-success" %>
+    </div>
+</div>

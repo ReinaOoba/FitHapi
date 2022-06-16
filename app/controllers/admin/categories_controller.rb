@@ -1,7 +1,12 @@
 class Admin::CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.all.page(params[:page]).per(10)
     @new_category = Category.new
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @articles = @category.articles.page(params[:page])
   end
 
   def create

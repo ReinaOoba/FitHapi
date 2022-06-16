@@ -18,8 +18,8 @@ namespace :admin do
   resources :articles, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:destroy]
   end
-  resources :categories, only:[:index, :new, :edit, :create, :update, :destroy]
-  resources :tags, only: [:index, :new, :edit, :create, :update, :destroy]
+  resources :categories, only:[:index, :show, :new, :edit, :create, :update, :destroy]
+  resources :tags, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
   resources :my_trainings, only: [:show, :destroy]
   resources :weights, only: [:index, :show, :edit, :update, :destroy]

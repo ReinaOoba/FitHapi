@@ -32,13 +32,6 @@ footer p{
 
 .user_page-follow_btn{
   text-align : center
-  // padding: 0.5em 1em;
-  // margin: 2em 0;
-  // font-weight: bold;
-  // color: #6091d3;/*文字色*/
-  // background: #FFF;
-  // border: solid 3px #6091d3;/*線*/
-  // border-radius: 10px;/*角の丸み*/
 }
 
 
@@ -50,3 +43,10 @@ footer p{
   padding: 0 5px;
 }
 
+.text-success{
+  color: #33CC33;
+}
+
+.text-muted{
+  color: #FF3300;
+}

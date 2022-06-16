@@ -1,7 +1,12 @@
 class Admin::TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = Tag.all.page(params[:page]).per(10)
     @new_tag = Tag.new
+  end
+
+  def show
+    @tag = Tag.find(params[:id])
+    @articles = @tag.articles.page(params[:page])
   end
 
   def create
