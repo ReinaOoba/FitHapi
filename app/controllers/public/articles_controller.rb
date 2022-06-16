@@ -68,7 +68,7 @@ class Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:article_image, :title, :text, :category_id, :taglist_id, :status).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :text, :category_id, :taglist_id, :status, :article_video, article_images: [] ).merge(user_id: current_user.id)
   end
 
 

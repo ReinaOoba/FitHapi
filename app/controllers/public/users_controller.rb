@@ -33,7 +33,13 @@ class Public::UsersController < ApplicationController
   end
 
   def private_articles
+    @user = User.find_by(account: params[:user_account])
     @articles = @user.articles.where(status: 1).page(params[:page])
+  end
+
+  def favorite_articles
+    @user = User.find_by(account: params[:user_account])
+    @favorites = @user.favorites.includes(:article).where(article: {status: 0}).page(params[:page])
   end
 
 private

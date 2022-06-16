@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>会員別フォローされてる人（＝一般人）一覧</h3>
+  <h3><%= @user.name %>さんのフォロワー一覧</h3>
     <% if @users.exists? %>
       <%= render "public/relationships/follow_list", users: @users %>
     <% else %>

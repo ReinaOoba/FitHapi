@@ -5,7 +5,7 @@
   </div>
 
   <div class="form-group row">
-   <%= f.label :本文, class: "col-3" %>
+   <%= f.label :text, "本文", class: "col-3" %>
    <%= f.text_area :text %>
   </div>
 
@@ -15,13 +15,18 @@
   </div>
 
   <div class="form-group row">
-   <%= f.label "タグ(全角スペースで区切ると複数タグを登録できます)", class: "col-5" %>
+   <%= f.label :tag, "タグ(全角スペースで区切ると複数タグを登録できます)", class: "col-5" %>
    <%= f.text_field :name, class: "col-3" %>
   </div>
 
   <div class="form-group row">
-   <%= f.label :画像, class: "col-3" %>
-   <%= f.file_field :article_image, accept: "image/*" %>
+   <%= f.label :article_images, "画像", class: "col-3" %>
+   <%= f.file_field :article_images, multiple: true, accept: "image/*" %>
+  </div>
+
+  <div class="form-group row">
+   <%= f.label :動画, class: "col-3" %>
+   <%= f.file_field :article_video, accept: "video/*" %>
   </div>
 
   <div class="form-group row pb-3 mb-0">

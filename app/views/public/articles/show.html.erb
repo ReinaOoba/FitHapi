@@ -1,18 +1,24 @@
 <div class="container py-3">
-　　<div class="row mx-auto">
-　　  <h3 class="mini-title mb-3"><%= @article.title %></h3>
-　　  <div class="row">
+　<div class="article-contents mx-auto col-9">
+　  <div class="article-title row">
+　　  <h3 class="mb-3"><%= @article.title %></h3>
+　　  <div class="row article-user">
 　　    <p>投稿者：</p>
 　　  　<%= link_to user_path(@article.user) do %>
 　　      <%= @article.user.name %>@<%= @article.user.account %>
 　　    <% end %>
 　　  </div>
 　　</div>
-
-  <div>
-    <div>
+　　<div>
       <%= safe_join(@article.text.split("\n"),tag(:br)) %>
     </div>
+    <% @article.article_images.each do |article_image| %>
+      <%= image_tag(article_image, width:300) %>
+    <% end %>
+    <!--%= video_tag(article_video, width:300) %>-->
+　</div>
+
+  <div>
     <div class="article_info col-4">
       <table class="table table-borderless">
         <tbody>
@@ -32,11 +38,6 @@
             <th>投稿日</th>
             <td><%= @article.created_at.to_s(:datetime_jp) %></td>
           </tr>
-          <tr>
-            <th>公開設定</th>
-            <td><%= @article.status %></td>
-          </tr>
-          <tr>
         </tbody>
       </table>
       <% if @article.user == current_user %>

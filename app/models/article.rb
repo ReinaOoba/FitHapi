@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
-  has_many_attached :article_image, dependent: :destroy
+  has_many_attached :article_images, dependent: :destroy
+  has_one_attached :article_video, dependent: :destroy
   belongs_to :user
   belongs_to :category
   has_many :taglist, dependent: :destroy
@@ -8,7 +9,7 @@ class Article < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  enum status: { opened: 0, privated: 1 }
+  enum status: { public: 0, privated: 1 }, _prefix: true
 
   validates :user_id, presence: true
   validates :category_id, presence: true

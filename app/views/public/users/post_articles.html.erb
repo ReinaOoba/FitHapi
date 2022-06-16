@@ -14,7 +14,7 @@
           <tr>
             <td><%= link_to article.title, article_path(article) %></td>
             <td><%= article.category.name %></td>
-            <td>いいね数：<!--%= article.favorites.count %>--></td>
+            <td>いいね数：<%= article.favorites.count %></td>
             <td>コメント数：<%= article.comments.count %></td>
           </tr>
         <% end %>
