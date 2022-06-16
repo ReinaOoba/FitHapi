@@ -28,5 +28,5 @@
    <%= f.label :公開設定, class: "col-3" %>
    <%= f.select :status, Article.statuses.keys.to_a, {}, { class: 'article-opened' } %>
   </div>
-  <%= f.submit "決定", class: "btn btn-success" %>
+  <%= f.submit "決定", class: "btn btn-primary" %>
 <% end %>

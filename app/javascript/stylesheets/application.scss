@@ -1,6 +1,52 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import "button";
 
-// .viewer{
-//   background-color: #ff0000;
-// }
+@charset "UTF-8";
+*{
+  margin:0;
+  padding: 0;
+}
+
+#viewer{
+  width: 100%;
+ }
+
+.navbar{
+  background-color: #FFFFAA;
+  height: 100px;
+}
+
+footer{
+  background-color: #FFFFAA;
+  height: 100px;
+}
+
+footer p{
+   text-align: center;
+   }
+
+.user_page-user_image{
+  text-align : center
+}
+
+.user_page-follow_btn{
+  text-align : center
+  // padding: 0.5em 1em;
+  // margin: 2em 0;
+  // font-weight: bold;
+  // color: #6091d3;/*文字色*/
+  // background: #FFF;
+  // border: solid 3px #6091d3;/*線*/
+  // border-radius: 10px;/*角の丸み*/
+}
+
+
+.link-btn{
+  border: 2px solid #FF773E;
+  background: #FF773E;
+  border-radius: 50vh;
+  color: #fff;
+  padding: 0 5px;
+}
+
