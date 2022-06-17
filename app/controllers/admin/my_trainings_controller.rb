@@ -1,4 +1,6 @@
 class Admin::MyTrainingsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @user = User.find_by(account: params[:user_account])
     @my_trainings = @user.my_trainings
@@ -14,4 +16,5 @@ class Admin::MyTrainingsController < ApplicationController
     my_training.delete
     redirect_to admin_user_my_trainings_path(user)
   end
+
 end

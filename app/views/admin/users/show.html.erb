@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
-    <h3><%= @user.name %>@<%= @user.account %>さんのユーザー詳細</h3>
+    <h3><%= @user.name %>@<%= @user.account %>の詳細</h3>
   </div>
-  <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
+  <div class="user_page-user_image">
+    <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
+  </div>
   <div class="row">
     <div class="col-8 ml-5">
       <table class="table table-bordered ml-5">
