@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h3 class="mini-title">会員一覧</h3>
+    </div>
+  </div>
+    <div class="row justify-content-center">
+      <div class="col-11">
+        <table class="table table-inverse table-hover text-center">
+          <thead class="thead">
+            <tr>
+              <th style="width: 15%">ユーザーID</th>
+              <th style="width: 33%">アカウント名</th>
+              <th style="width: 32%">メールアドレス</th>
+              <th style="width: 20%">会員ステータス</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td>
+              <%= link_to admin_user_path(user), class: "text-dark" do %>
+                <%= user.name %>@<%= user.account %>
+              <% end %>
+              </td>
+              <td><%= user.email %></td>
+              <td>
+                <% if user.active_for_authentication? %>
+                  <b class="text-success">有効</b>
+                <% else %>
+                  <b class="text-muted">退会</b>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <%= paginate @users %>
+    </div>
+</div>

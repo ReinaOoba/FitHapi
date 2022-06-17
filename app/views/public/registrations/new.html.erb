@@ -1,0 +1,47 @@
+<div class="container py-3">
+ <%= render "layouts/errors", obj: resource %>
+ <div class="col-8 mx-auto">
+  <h3 class="mini-title">新規会員登録</h3>
+   <%= form_for(resource, url: registration_path(resource_name)) do |f| %>
+
+    <!--アカウント名-->
+    <div class="form-group row ">
+     <%= f.label :account, 'アカウント名' , class: "col-5" %>
+     <%= f.text_field :account, placeholder: "FitHapi", class: "form-control col-4" %>
+    </div>
+    <!--ニックネーム-->
+    <div class="form-group row">
+     <%= f.label :name, "ニックネーム(20文字以内)", class: "col-5" %>
+     <%= f.text_field :name, placeholder: "フィトハピ太郎", class: "form-control col-4" %>
+    </div>
+    <!--メールアドレス-->
+    <div class="form-group row">
+     <%= f.label :email, "メールアドレス", class: "col-5" %>
+     <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: "form-control col-4" %>
+    </div>
+    <!--パスワード-->
+    <div class="form-group row">
+     <div class="password-form col-5" %>
+      <%= f.label :password, "パスワード" %>
+      <% if @minimum_password_length %>
+      (<%= @minimum_password_length %>文字以上)
+      <% end %>
+     </div>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-4" %>
+    </div>
+    <div class="form-group row">
+     <%= label :password_confirmation, "パスワード(確認用)", class:"col-5" %>
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control col-4" %>
+    </div>
+    <div class="form-group text-center">
+     <%= f.submit "新規登録", class: 'btn btn-sm btn-success col-4' %>
+    </div>
+      <% end %>
+    <p>お試しで使ってみたい方</p>
+    <%= link_to "ゲストログイン", users_guest_sign_in_path, class: 'btn btn-outline-secondary' %>
+
+    <p class="mini-title">既にご登録済みの方</p>
+    <div class= "ml-4 pb-4">
+     <%= render "public/shared/links"%>
+    </div>
+</div>

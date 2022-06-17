@@ -1,0 +1,15 @@
+<div class="container">
+  <div class= "mx-auto pt-3" style="text-align:center">
+    <h4>本当に退会しますか？</h4>
+    <p>
+      退会すると使えなくなる機能がいっぱいあります！</br>
+      ・毎日の運動やオリジナルメニューを記録する「記事投稿機能」</br>
+      ・好きな記事を無限にブックマークできる「いいね機能」</br>
+      ・お気に入りのトレーニングメニューを作れる「まいトレ機能」</br>
+      ・トレーニングの結果を残せる「体重記録機能」</br>
+      ・・・それでも退会する場合は、「退会する」をクリックしてください。
+    </p>
+    <%= link_to "退会しない", user_path(current_user), class:"btn btn-primary mr-3" %>
+    <%= link_to "退会する", user_withdrawal_path, method: :patch, class:"btn btn-danger" %>
+  </div>
+</div>

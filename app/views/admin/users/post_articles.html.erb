@@ -1,0 +1,31 @@
+<div class="container">
+  <% if @articles.exists?%>
+    <h3><%= @user.name %>@<%= @user.account %>の記事</h3>
+      <table class='table table-hover table-inverse text-center'>
+        <thead>
+          <tr>
+            <th style="width: 40%">Title</th>
+            <th style="width: 20%">カテゴリー</th>
+            <th style="width: 10%">公開設定</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @articles.each do |article| %>
+          <tr>
+            <td><%= link_to article.title, admin_article_path(article) %></td>
+            <td><%= link_to article.category.name, admin_category_path(article.category) %></td>
+            <td><%= article.status %></td>
+            <td>いいね数：<%= article.favorites.count %></td>
+            <td>コメント数：<%= article.comments.count %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <div class="d-flex justify-content-center">
+      <%= paginate @articles %>
+    </div>
+  <% else %>
+    <p>投稿した記事はありません</p>
+  <% end %>
+</div>

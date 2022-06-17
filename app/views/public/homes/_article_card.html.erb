@@ -1,0 +1,18 @@
+<div class="card-deck" style="width:800px">
+  <% articles.each do |article| %>
+    <div class="card" style="width: 200px">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
+        <h6 class="card-user mb-2 text-muted mt-2">
+          <%= link_to user_path(article.user) do %>
+            <%= image_tag article.user.get_profile_image(40,40), style: "border-radius: 50%" %>
+            <%= article.user.name %>@<%= article.user.account %>
+          <% end %>
+        </h6>
+        <p class="card-text"><%= article.text.truncate(30) %></p>
+        <p class="card-category">カテゴリー：<%= link_to article.category.name, category_path(article.category) %></p>
+        <p class="card-tag">タグ：<%= article.tags.map(&:name).join('　') %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,75 @@
+<div class='container'>
+  <div class='col-9 mx-auto mb-3'>
+    <% if @user == current_user %>
+      <h3>マイページ</h3>
+    <% else %>
+      <h3><%= @user.name %>さんのページ</h3>
+    <% end %>
+    <div class="user_page-user_image">
+      <%= image_tag @user.get_profile_image(200,200), style: "border-radius: 50%" %>
+    </div>
+
+    <% if user_signed_in? && @user != current_user %>
+      <div class="user_page-follow_btn">
+        <%= render "public/relationships/follow_btn", user: @user %>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-8">
+        <table class="table table-bordered ml-5">
+          <tbody>
+            <tr>
+              <th class="col-4 text-center">ユーザー名</th>
+              <td><%= @user.name %>@<%= @user.account %></td>
+            </tr>
+            <tr>
+              <th class="col-4 text-center">自己紹介</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+            <tr>
+            <th class="col-4 text-center">フォロー</th>
+            <td>
+              <%= link_to user_followings_path(@user) do %>
+                <%= @user.followings.count %> 人
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center">フォロワー</th>
+            <td>
+              <%= link_to user_followers_path(@user) do %>
+                <%= @user.followers.count %> 人
+              <% end %>
+            </td>
+          </tr>
+          <tbody>
+        </table>
+      </div>
+    </div>
+    <% if @user == current_user %>
+    <div class="text-center">
+     <%= link_to "アカウント情報の変更", edit_user_path(@user), class:"btn btn-success" %>
+    </div>
+    <% end %>
+    <div class="row">
+      <div class="col-8 mx-2 ml-5">
+        <div class= "link-lists row mt-3">
+          <h4 class="title col-4">投稿した記事</h4>
+          <%= link_to "一覧を見る", user_post_articles_path(@user), class: "btn btn-primary ml-4" %>
+          <% if @user == current_user %>
+            <%= link_to "非公開設定の記事を見る", user_private_articles_path(@user), class: "btn btn-primary ml-4" %>
+          <% end %>
+        </div>
+        <div class="link-lists row mt-3">
+          <h4 class="title col-4">まいトレ</h4>
+          <%= link_to "一覧を見る", user_my_trainings_path(@user), class: "btn btn-primary ml-4" %>
+        </div>
+        <div class="link-lists row mt-3">
+          <h4 class="title col-5">いいねした記事</h4>
+          <%= link_to "一覧を見る", user_favorite_articles_path(@user), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

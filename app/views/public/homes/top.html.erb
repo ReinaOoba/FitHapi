@@ -1,0 +1,49 @@
+<div class="container py-3">
+    <h1 class="text-center">FitHapi ~みんなでFitnessしてHappyになろう~</h3>
+    <div class="main row mt-5">
+      <div class="sidebar col-3">
+        <%= render "public/sidebar", categories: @categories, tags: @tags %>
+      </div>
+      <div class="main-contents col-9">
+        <div class="new_arrival">
+          <h3>新着記事</h3>
+          <%= render "article_card", articles: @new_arrival_articles %>
+          <div class="index-link mt-2" style="text-align: right;">
+            <%= link_to new_arrival_path, class: "link-btn " do %>
+              <font size="3">新着記事一覧を見る</font>
+            <% end %>
+          </div>
+        </div>
+        <div class="hot mt-3">
+          <h3>人気の記事</h3>
+          <%= render "article_card", articles: @hot_articles %>
+          <div class="index-link mt-2" style="text-align: right;">
+            <%= link_to hot_path,class: "link-btn" do %>
+              <font size="3">人気の記事一覧を見る</font>
+            <% end %>
+        </div>
+        <div class="article_category mt-3">
+          <h3>人気のカテゴリー</h3>
+          <% @categories.each do |category| %>
+            <h5 class="mt-3"><%= category.name%></h5>
+            <%= render "article_card", articles: category.articles %>
+          <% end %>
+          <div class="index-link mt-2" style="text-align: right;">
+            <%= link_to categories_path, class: "link-btn" do %>
+              <font size="3">全てのカテゴリーを見る</font>
+            <% end %>
+          </div>
+        </div>
+        <div class="all_articles mt-3">
+          <h5>全ての記事を見る
+            <span>
+              <%= link_to articles_path,class: "link-btn" do %>
+                <font size="3">こちら</font>
+              <% end %>
+            </span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div><%= render 'layouts/errors', obj: @article %></div>
+<div class="container py-3">
+ <div class="col-8 mx-2">
+  <h3 class="mini-title">新規投稿</h3>
+  <%= render partial: "form", locals: {article: @article, categories: @categories} %>
+ </div>
+</div>

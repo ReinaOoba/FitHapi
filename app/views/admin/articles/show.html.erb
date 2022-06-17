@@ -1,0 +1,43 @@
+<div class="container py-3">
+　<h3 class="mini-title mb-3"><%= @article.title %></h3>
+　<p> 投稿者：<%= @article.user.name %>@<%= @article.user.account %></p>
+  <div>
+    <div>
+      <%= safe_join(@article.text.split("\n"),tag(:br)) %>
+    </div>
+      <% @article.article_images.each do |article_image| %>
+        <%= image_tag(article_image, width:300) %>
+      <% end %>
+    <div class="article_info">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th class="col-2">カテゴリー</th>
+            <td><%= @article.category.name %></td>
+          </tr>
+          <tr>
+            <th class="col-2">タグ</th>
+            <td><%= @article.tags.map(&:name).join(', ') %></i></td>
+          </tr>
+          <tr>
+            <th class="col-2">投稿日</th>
+            <td><%= @article.created_at.to_s(:datetime_jp) %></td>
+          </tr>
+          <tr>
+            <th class="col-2">公開設定</th>
+            <td><%= @article.status %></td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      <div class="mt-4">
+        <%= link_to "削除", admin_article_path(@article), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか?"  %>
+      </div>
+      <div class="article_reaction">
+        <p>いいね数：<%= @article.favorites.count %></p>
+        <p>コメント（全 <%= @article.comments.count %> 件）</p>
+        <%= render "admin/comments/c_index", article: @article %>
+      </div>
+    </div>
+  </div>
+</div>

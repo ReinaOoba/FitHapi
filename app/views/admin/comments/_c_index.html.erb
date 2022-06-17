@@ -1,0 +1,19 @@
+<table>
+  <tbody>
+    <% article.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to admin_user_path(comment.user) do %>
+            <%= image_tag comment.user.get_profile_image(100,100) %><br>
+            <%= comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= comment.text %></td>
+        <td>
+          <%= link_to "削除", admin_article_comment_path(article, comment), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
