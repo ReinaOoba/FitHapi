@@ -64,3 +64,16 @@ input.btn-danger:hover, a.btn-danger:hover {
   color: #9057FF !important;
   background: #FFF !important;
 }
+
+input.btn-outline-secondary,a.btn-outline-secondary {
+  border: 2px solid #FF9933;
+  background: #FFFFAA;
+  border-radius: 50vh;
+  color: #000;
+}
+
+input.btn-outline-secondary:hover, a.btn-outline-secondary:hover {
+  border: 2px solid #FF9933 !important;
+  color: #000 !important;
+  background: #FF9933 !important;
+}
