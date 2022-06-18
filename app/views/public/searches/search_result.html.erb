@@ -1,0 +1,30 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "Article" %>
+    <tbody>
+      <% @article.each do |article| %>
+        <tr>
+          <td><%= article.title %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif %>
+    <tbody>
+      <% @category.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <tbody>
+      <% @tag.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
