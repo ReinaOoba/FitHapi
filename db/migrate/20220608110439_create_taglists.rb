@@ -1,8 +1,8 @@
 class CreateTaglists < ActiveRecord::Migration[6.1]
   def change
     create_table :taglists do |t|
-      t.integer :tag_id, default: ""
-      t.integer :article_id, null: false, default: ""
+      t.integer :tag_id
+      t.integer :article_id, null: false
       t.timestamps
     end
 
