@@ -36,14 +36,15 @@ class Article < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @article = Article.where("title LIKE?", "#{word}")
-    elsif search == "partial_match"
-      @article = Article.where("title LIKE?","%#{word}%")
-    else
-      @article = Article.all
-    end
+  def self.search(word)
+    @articles_all = Article.where("title like :q OR text like :q ", q: "%#{word}%")
   end
 
+  def self.title_search(word)
+    @articles_title = Article.where("title LIKE?","%#{word}%")
+  end
+
+  def self.text_search(word)
+    @articles_text = Article.where("text LIKE?","%#{word}%")
+  end
 end

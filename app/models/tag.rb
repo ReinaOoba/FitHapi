@@ -4,13 +4,8 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @tag = Tag.where("name LIKE?", "#{word}")
-    elsif search == "partial_match"
-      @tag = Tag.where("name LIKE?","%#{word}%")
-    else
-      @tag = Tag.all
-    end
+  def self.search(word)
+    @tags = Tag.where("name LIKE?","%#{word}%")
   end
+
 end
