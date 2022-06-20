@@ -1,17 +1,17 @@
 <%= form_with model: my_training, local: true do |f| %>
     <div class="form-group row">
-     <%= f.label :menu, class: "col-3" %>
+     <%= f.label :menu, "トレーニングメニュー名", class: "col-3" %>
      <%= f.text_field :menu %>
     </div>
 
     <div class="form-group row">
-     <%= f.label :set, class: "col-3" %>
+     <%= f.label :set, "セット数・回数・時間", class: "col-3" %>
      <%= f.text_area :set %>
     </div>
 
     <div class="form-group row">
-     <%= f.label :note, class: "col-6" %>
-     <%= f.text_field :note, class: "form-control" %>
+     <%= f.label :note, "メモ欄", class: "col-6" %>
+     <%= f.text_area :note, class: "form-control" %>
     </div>
 
     <div class="form-group row pb-3 mb-0">

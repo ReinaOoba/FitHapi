@@ -1,4 +1,11 @@
-<div class= "container">
-  <h3>新着記事</h3>
-  <%= render 'list', articles: @articles %>
+<div class= "container py-3">
+  <div class="main row mt-5">
+    <div class="sidebar col-3">
+      <%= render "public/sidebar", categories: @categories, tags: @tags %>
+    </div>
+    <div class="main-contents col-9">
+      <h3>新着記事</h3>
+      <%= render 'list', articles: @articles %>
+    </div>
+  </div>
 </div>

@@ -57,12 +57,16 @@ class Public::ArticlesController < ApplicationController
 
   def new_arrival
     @articles = Article.limit(100).where(status: 0).order(created_at: :DESC).page(params[:page])
+    @categories = Category.includes(:articles).where(articles: {status: 0}).limit(4)
+    @tags = Tag.includes(:articles).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)
   end
 
   def hot
     articles = Article.where(status: 0)
     articles_hot = articles.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
     @articles = Kaminari.paginate_array(articles_hot).page(params[:page]).per(2)
+    @categories = Category.includes(:articles).where(articles: {status: 0}).limit(4)
+    @tags = Tag.includes(:articles).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)
   end
 
   private

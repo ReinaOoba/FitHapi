@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="search_form">
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word, :value => @word, placeholder: "キーワードを入力", class: "form-control col-5" %>
+      <%= f.select :range, options_for_select([['記事全体','Article'], ['記事タイトル','Title'], ['記事本文','Text'], ['タグ','Tag']]) %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+<% if @range == "Article" %>
+  <h2>「<%= @word %>」の記事検索結果</h2>
+<% elsif @range == "Title" %>
+  <h2>「<%= @word %>」の記事タイトル検索結果</h2>
+  <% elsif @range == "Text" %>
+  <h2>「<%= @word %>」の記事本文検索結果</h2>
+<% else %>
+  <h2>「<%= @word %>」のタグ検索結果</h2>
+<% end %>
+
+<table class="table table-hover table-inverse">
+  <% if @range == "Article" && @articles_all.present?  %>
+    <%= render "public/articles/list", articles: @articles_all %>
+
+  <% elsif @range == "Title" && @articles_title.present? %>
+        <%= render "public/articles/list", articles: @articles_title %>
+
+  <% elsif @range == "Text" && @articles_text.present? %>
+        <%= render "public/articles/list", articles: @articles_text %>
+
+  <% elsif @range == "Tag" && @tags.present? %>
+    <table class="table table-hover table-inverse text-center">
+      <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td>
+            <%= link_to tag_path(tag) do %>
+              <%= tag.name %>（<%= tag.articles.count %>件）
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <label>検索結果がありません。</label>
+  <% end %>
+</table>
+</div>
