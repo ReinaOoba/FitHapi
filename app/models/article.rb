@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  enum status: { public: 0, privated: 1 }, _prefix: true
+  enum status: { opened: 0, privated: 1 }
 
   validates :user_id, presence: true
   validates :category_id, presence: true

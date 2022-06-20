@@ -60,6 +60,8 @@ gem 'kaminari','~> 1.2.1'
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'dotenv-rails'
+gem 'rails-i18n'
+gem "enum_help"
 group :production do
   gem 'mysql2'
 end

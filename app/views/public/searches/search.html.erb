@@ -1,10 +1,23 @@
 <div class="container">
   <div class="search_form">
     <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word, :value => @word, placeholder: "キーワードを入力", class: "form-control col-5" %>
-      <%= f.select :range, options_for_select([['記事全体','Article'], ['記事タイトル','Title'], ['記事本文','Text'], ['タグ','Tag']]) %>
+      <%= f.hidden_field :range, value: @range%>
+      <%= f.text_field :word, :value => @word, placeholder: "キーワードを入力", class: "col-5" %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
+  </div>
+
+  <div>
+    <%= link_to "記事本文", search_path(range: "Article", word: @word) %>
+  </div>
+  <div>
+    <%= link_to "記事タイトル", search_path(range: "Title", word: @word) %>
+  </div>
+  <div>
+    <%= link_to "記事本文", search_path(range: "Text", word: @word) %>
+  </div>
+  <div>
+    <%= link_to "タグ", search_path(range: "Tag", word: @word) %>
   </div>
 
 <% if @range == "Article" %>

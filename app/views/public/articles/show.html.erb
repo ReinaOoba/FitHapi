@@ -38,6 +38,10 @@
             <th>投稿日</th>
             <td><%= @article.created_at.to_s(:datetime_jp) %></td>
           </tr>
+          <tr>
+            <th>公開設定</th>
+            <td><%= @article.status_i18n %></td>
+          </tr>
         </tbody>
       </table>
       <% if @article.user == current_user %>
