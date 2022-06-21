@@ -7,7 +7,7 @@ devise_for :admin, controllers: {
 # 管理者ルーティング設定
 namespace :admin do
   root to: 'homes#top'
-  # get "search" => "searches#search"
+  get "search" => "searches#search"
   resources :users, only: [:index,:show,:edit,:update], param: :account do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
