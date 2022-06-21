@@ -8,7 +8,7 @@ class Public::SearchesController < ApplicationController
       @articles_title = Article.title_search(@word).page(params[:page])
     elsif @range == "Text"
       @articles_text = Article.text_search(@word).page(params[:page])
-    else @range == "Tag"
+    else
       @tags = Tag.search(@word)
     end
   end

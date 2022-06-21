@@ -1,6 +1,23 @@
-<div class="container">
-  <h3>カテゴリー一覧</h3>
-   <% @tags.each do |tag| %>
-     <%= link_to tag.name, tag_path(tag) %>
-   <% end %>
+<div class="container py-3">
+  <div class="main row mt-5">
+    <div class="sidebar col-3">
+      <%= render "public/sidebar", categories: @categories, tags: @tags %>
+    </div>
+    <div class="main-contents col-9">
+      <h3>タグ一覧</h3>
+      <table class="table table-hover table-inverse text-center">
+        <tbody>
+        <% @tag.each do |tag| %>
+          <tr>
+            <td>
+              <%= link_to tag_path(tag) do %>
+                <%= tag.name %>（<%= tag.articles.count %>件）
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

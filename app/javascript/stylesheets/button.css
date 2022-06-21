@@ -77,3 +77,11 @@ input.btn-outline-secondary:hover, a.btn-outline-secondary:hover {
   color: #000 !important;
   background: #FF9933 !important;
 }
+
+.btn-faild{
+  border: 2px solid #C0C0C0;
+  background: #C0C0C0;
+  border-radius: 50vh;
+  color: #fff;
+  padding: 5px 5px;
+}
