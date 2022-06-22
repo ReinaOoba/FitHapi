@@ -15,7 +15,7 @@
           <tr>
             <td><%= link_to article.title, admin_article_path(article) %></td>
             <td><%= link_to article.category.name, admin_category_path(article.category) %></td>
-            <td><%= article.status %></td>
+            <td><%= article.status_i18n %></td>
             <td>いいね数：<%= article.favorites.count %></td>
             <td>コメント数：<%= article.comments.count %></td>
           </tr>
@@ -28,4 +28,7 @@
   <% else %>
     <p>投稿した記事はありません</p>
   <% end %>
+  <div class="text-center mt-3">
+    <%= link_to "会員詳細に戻る", admin_user_path(@user), class: "btn btn-success" %>
+  </div>
 </div>

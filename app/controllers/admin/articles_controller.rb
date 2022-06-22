@@ -7,7 +7,7 @@ class Admin::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @comment = 
+
   end
 
   def edit

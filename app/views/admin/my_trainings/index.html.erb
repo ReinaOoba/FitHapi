@@ -1,5 +1,5 @@
 <div class="container">
-  <h3><%= @user.account %>@<%= @user.name %>のまいトレ</h3>
+  <h3><%= @user.name %>@<%= @user.account %>のまいトレ</h3>
 
 <% if @my_trainings.exists? %>
   <table class='table table-bordered table-hover text-center mb-0'>
@@ -14,10 +14,10 @@
     <tbody  class="table-warning">
       <% @my_trainings.each do |my_training| %>
       <tr>
-        <td><%= my_training.menu %></td>
-        <td><%= my_training.set %></td>
-        <td><%= my_training.note %></td>
-        <td><%= link_to "詳細を見る", admin_my_training_path(my_training), class: "btn btn-success" %></td>
+        <td style="width: 25%"><%= my_training.menu %></td>
+        <td style="width: 20%"><%= my_training.set %></td>
+        <td style="width: 40%"><%= my_training.note %></td>
+        <td><%= link_to "詳細を見る", admin_my_training_path(my_training), class: "btn btn-primary" %></td>
       </tr>
       <% end %>
     </tbody>
@@ -25,5 +25,7 @@
 <% else %>
   <p>登録済みのまいトレはありません</p>
 <% end %>
-<%= link_to "ユーザー詳細に戻る", admin_user_path(@user), class: "btn btn-success" %>
+  <div class="text-center mt-3">
+    <%= link_to "会員詳細に戻る", admin_user_path(@user), class: "btn btn-success" %>
+  </div>
 </div>

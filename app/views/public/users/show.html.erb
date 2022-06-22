@@ -47,7 +47,7 @@
         </table>
       </div>
     </div>
-    <% if @user.account == "guest" %>
+    <% if @user.account == "guest" && @user == current_user %>
       <div class="text-center">
         <label class="btn-faild">ゲストユーザーはアカウント編集できません</label>
       </div>
