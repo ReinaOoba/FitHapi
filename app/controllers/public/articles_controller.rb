@@ -8,6 +8,7 @@ class Public::ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @article_tags = @article.tags
+    @comments = @article.comments
     @comment = Comment.new
   end
 

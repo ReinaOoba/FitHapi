@@ -24,9 +24,9 @@
     <tbody  class="table-warning">
       <% @my_trainings.each do |my_training| %>
       <tr>
-        <td><%= my_training.menu %></td>
-        <td><%= my_training.set %></td>
-        <td><%= my_training.note %></td>
+        <td style="width: 25%"><%= my_training.menu %></td>
+        <td style="width: 20%"><%= my_training.set %></td>
+        <td style="width: 40%"><%= my_training.note %></td>
         <td><%= link_to "詳細を見る", my_training_path(my_training), class: "btn btn-primary" %></td>
       </tr>
       <% end %>
