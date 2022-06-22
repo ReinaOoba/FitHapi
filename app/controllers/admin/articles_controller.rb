@@ -1,12 +1,13 @@
 class Admin::ArticlesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @articles = Article.all.page(params[:page]).per(10)
   end
 
   def show
     @article = Article.find(params[:id])
+    @comment = 
   end
 
   def edit
@@ -17,7 +18,7 @@ class Admin::ArticlesController < ApplicationController
   def destroy
     article = Article.find(params[:id])
     article.delete
-    redirect_to root_path
+    redirect_to admin_articles_path
   end
 
   private

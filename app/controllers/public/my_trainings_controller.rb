@@ -47,7 +47,7 @@ class Public::MyTrainingsController < ApplicationController
 private
 
   def my_training_params
-    params.require(:my_training).permit(:menu, :set, :note, :user_id)
+    params.require(:my_training).permit(:menu, :set, :note)
   end
 
   def ensure_correct_user

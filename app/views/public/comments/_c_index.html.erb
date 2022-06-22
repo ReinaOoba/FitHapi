@@ -1,7 +1,7 @@
-<% if article.comments.exists? %>
+<% if comments.exists? %>
   <table>
     <tbody>
-      <% article.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <tr>
           <td>
             <%= link_to user_path(comment.user) do %>

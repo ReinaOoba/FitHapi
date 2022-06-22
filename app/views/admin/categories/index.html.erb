@@ -1,12 +1,6 @@
 <div class="col-8 mx-auto pb-3">
   <h4 class="mini-title mt-3 mb-2">カテゴリー登録/一覧</h4>
-    <%= render "layouts/errors", obj: @new_category %>
-    <%= form_with model: @new_category, url: admin_categories_path, method: :post, local:true do |f| %>
-    <div class="form-group row">
-      <%= f.text_field :name, placeholder: "新規登録", class: "form-control col-4" %>
-      <%= f.submit "決定", class: "btn btn-success ml-3" %>
-    </div>
-    <% end %>
+    <%= render "admin/shared/word_form", obj: @new_category %>
 
     <% if @categories.exists? %>
       <table class='table table-inverse table-hover text-center mb-0'>
