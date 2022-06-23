@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 15 }
   validates :account, presence: true, uniqueness: true, length: { minimum: 4 }
-  validates :introduction, length: { in: 3..150 }
+  validates :introduction, length: { maximum: 150 }
   validates :email, presence: true, uniqueness: true
 
   def to_param
