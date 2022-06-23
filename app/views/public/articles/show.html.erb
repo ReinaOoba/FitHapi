@@ -1,27 +1,30 @@
 <div class="container py-3">
-　<div class="article-contents mx-auto col-9">
-　  <div class="article-title row">
-　　  <h3 class="mb-3"><%= @article.title %></h3>
-　　  <div class="row article-user">
-　　    <p>投稿者：</p>
-　　  　<%= link_to user_path(@article.user) do %>
-　　      <%= @article.user.name %>@<%= @article.user.account %>
-　　    <% end %>
-　　  </div>
-　　</div>
-　　<div>
+  <div class="article-contents mx-auto col-10">
+    <div class="article-title text-center border-bottom">
+      <h3 class="mb-3"><%= @article.title %></h3>
+    </div>
+    <div class="article-day row mt-3">
+      <p>投稿日: <%= @article.created_at.to_s(:datetime_jp) %></p>
+    </div>
+    <div class="article-text">
       <%= safe_join(@article.text.split("\n"),tag(:br)) %>
     </div>
-    <% @article.article_images.each do |article_image| %>
-      <%= image_tag(article_image, width:300) %>
-    <% end %>
-    <!--%= video_tag(article_video, width:300) %>-->
-　</div>
-
-  <div>
-    <div class="article_info col-4">
-      <table class="table table-borderless">
+    <div class="article-image mt-3 mb-3">
+      <% @article.article_images.each do |article_image| %>
+        <%= image_tag(article_image, width:250) %>
+      <% end %>
+    </div>
+    <div class="article_info border-bottom">
+      <table class="table table-borderless col-6">
         <tbody>
+          <tr>
+            <th>投稿者</th>
+            <td>
+              <%= link_to user_path(@article.user) do %>
+                <%= @article.user.name %>@<%= @article.user.account %>
+              <% end %>
+            </td>
+          </tr>
           <tr>
             <th>カテゴリー</th>
             <td><%= link_to @article.category.name, category_path(@article.category) %></td>
@@ -35,42 +38,40 @@
             </td>
           </tr>
           <tr>
-            <th>投稿日</th>
-            <td><%= @article.created_at.to_s(:datetime_jp) %></td>
-          </tr>
-          <tr>
             <th>公開設定</th>
             <td><%= @article.status_i18n %></td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="article_reaction mt-1">
+    <div class="reaction-buttons row col-10 mx-auto">
+      <!--記事編集ボタン-->
       <% if @article.user == current_user %>
-      <div class="mt-4">
-        <%= link_to "編集する", edit_article_path(@article), class: "btn btn-success" %>
-      </div>
+        <%= link_to "編集する", edit_article_path(@article), class: "btn btn-success pt-2 pb-2" %>
       <% end %>
-
-      <div class="article_reaction">
-        <% if user_signed_in? %>
-            <div id="favorite_btn_<%= @article.id %>">
-              <%= render "public/favorites/favorites", article: @article %>
-            </div>
-          <% unless @article.user == current_user %>
-            <div id="relationship-btn_<%= @article.id %>">
-              <%= render "public/relationships/follow_btn", user: @article.user %>
-            </div>
-          <% end %>
-
-            <p>コメント</p>
-            <div id="new_comment">
-              <%= render "public/comments/c_form", article: @article, comment: @comment %>
-            </div>
-        <% end %>
-
-        <p>コメント一覧</p>
-        <div id="comments">
-          <%= render "public/comments/c_index", article: @article, comments: @comments %>
+    <% if user_signed_in? %>
+      <!--いいねボタン-->
+      <div id="favorite_btn_<%= @article.id %>">
+        <%= render "public/favorites/favorites", article: @article %>
+      </div>
+        <!--フォローボタン-->
+      <% unless @article.user == current_user %>
+        <div id="relationship-btn_<%= @article.id %>">
+          <%= render "public/relationships/follow_btn", user: @article.user %>
         </div>
+      <% end %>
+    </div>
+    <div class="article-comment">
+      <p>コメント</p>
+      <div id="new_comment">
+        <%= render "public/comments/c_form", article: @article, comment: @comment %>
+      </div>
+    <% end %>
+      <p>コメント一覧（<%= @article.comments.count %>）</p>
+      <div id="comments">
+        <%= render "public/comments/c_index", article: @article, comments: @comments %>
       </div>
     </div>
   </div>

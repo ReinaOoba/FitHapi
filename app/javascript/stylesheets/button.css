@@ -1,3 +1,4 @@
+/*編集系コマンドボタン専用*/
 input.btn-success, a.btn-success {
   border: 2px solid #00CC00;
   background: #00CC00;
@@ -24,7 +25,7 @@ button.btn-outline-success:hover {
   background: #00CC00 !important;
 }
 
-
+/*決定、リンク、フォロー等最も多く使用するボタン*/
 input.btn-primary, a.btn-primary {
   border: 2px solid #FF773E;
   background: #FF773E;
@@ -52,6 +53,7 @@ input.btn-outline-primary:hover, a.btn-outline-primary:hover {
   background: #FF6928 !important;
 }
 
+/*削除コマンド専用*/
 input.btn-danger, a.btn-danger {
   border: 2px solid #9057FF;
   background: #9057FF;
@@ -65,6 +67,7 @@ input.btn-danger:hover, a.btn-danger:hover {
   background: #FFF !important;
 }
 
+/*ヘッダーのボタン*/
 input.btn-outline-secondary,a.btn-outline-secondary {
   border: 2px solid #FF9933;
   background: #FFFFAA;
@@ -78,10 +81,38 @@ input.btn-outline-secondary:hover, a.btn-outline-secondary:hover {
   background: #FF9933 !important;
 }
 
+/*ゲストログインさんは情報を編集できないよボタンに使用*/
 .btn-faild{
   border: 2px solid #C0C0C0;
   background: #C0C0C0;
   border-radius: 50vh;
   color: #fff;
   padding: 5px 5px;
+}
+
+/*いいねボタンに使用*/
+input.btn-warning, a.btn-warning {
+  border: 2px solid #FF367F;
+  background: #FF367F;
+  border-radius: 50vh;
+  color: #fff;
+}
+
+input.btn-warning:hover, a.btn-warning:hover {
+  border: 2px solid #FF367F !important;
+  color: #FF367F !important;
+  background: #FFF !important;
+}
+
+input.btn-outline-warning,a.btn-outline-warning {
+  border: 2px solid #FF367F;
+  background: #FFF;
+  border-radius: 50vh;
+  color: #FF367F;
+}
+
+input.btn-outline-warning:hover, a.btn-outline-warning:hover {
+  border: 2px solid #FF367F !important;
+  color: #fff !important;
+  background: #FF367F !important;
 }

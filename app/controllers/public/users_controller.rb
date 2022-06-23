@@ -18,7 +18,7 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def unsubscribe
   end
 
@@ -34,7 +34,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  
+
 
   def post_articles
    @user = User.find_by(account: params[:user_account])

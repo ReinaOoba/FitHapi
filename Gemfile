@@ -65,6 +65,7 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'rails-i18n'
 gem "enum_help"
+gem "chartkick"
 group :production do
   gem 'mysql2'
 end

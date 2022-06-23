@@ -10,6 +10,9 @@ class Public::ArticlesController < ApplicationController
     @article_tags = @article.tags
     @comments = @article.comments
     @comment = Comment.new
+    if @article.status == "privated" && @article.user != current_user
+      redirect_to root_path, notice: '非公開設定の記事は投稿者本人しか閲覧できません'
+    end
   end
 
   def edit

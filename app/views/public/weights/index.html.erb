@@ -1,1 +1,18 @@
-<h3>体重一覧</h3>
+<div class="container">
+  <h3>体重記録</h3>
+  <div class="weights-form mt-3">
+    <%= render "layouts/errors", obj: @new_weight %>
+    <%= form_with model: @new_weight, url: user_weights_path, method: :post, local:true do |f| %>
+    <div class="form-group row">
+      <%= f.number_field :number, placeholder: "本日の体重", step: '0.1', class: "input_form form-control col-4 mr-1" %>kg
+      <%= f.submit "登録", class: "btn btn-success ml-3" %>
+    </div>
+  <% end %>
+  </div>
+  <div class="weights-record">
+    <% @weights.each do |weight| %>
+      <%= weight.number %>
+    <% end %>
+    <!--%= line_chart @weights.group_by_day(:created_at).count %>-->
+  </div>
+</div>

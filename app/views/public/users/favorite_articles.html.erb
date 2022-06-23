@@ -27,7 +27,7 @@
   <% else %>
     いいねした記事はまだありません
     <% if @user.id == current_user.id %>
-      <%=link_to "記事を見る", root_path, class: "btn btn-success" %>
+      <%=link_to "記事を見にいく", root_path, class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>
