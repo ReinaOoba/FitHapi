@@ -54,8 +54,8 @@
 
 ## 使用素材
 -　https://pixabay.com/ja/　<span>「pixabay」様</span><br>
--　https://www.nin-fan.net/　「TOOL SITE」様<br>
--　https://fontawesome.com/　「font awesome」様
+-　https://www.nin-fan.net/　<span>「TOOL SITE」様</span><br>
+-　https://fontawesome.com/　<span>「font awesome」様</span>
 
 ## 作成者
 大場 伶奈<br>
