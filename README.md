@@ -19,9 +19,9 @@
 筋トレやダイエットに関心のある人
 
 ### 主な利用シーン
-・トレーニング記録を残したり、他の人の記録を見れる<br>
-・トレーニングメニューを投稿したり、トレーニングメニューを検索できる<br>
-・毎日のトレーニングメニューと記録を一つのアプリで管理できる
+・トレーニング記録を残したり、他の人の記録を見る<br>
+・トレーニングメニューを投稿したり、トレーニングメニューを検索する<br>
+・毎日のトレーニングメニューと記録を一つのアプリで管理する
 
 ## このアプリ内の機能
 ・ゲストログイン機能<br>
@@ -53,8 +53,8 @@
 - IDE：Cloud9
 
 ## 使用素材
--　https://pixabay.com/ja/　「pixabay」様
--　https://www.nin-fan.net/index.html　「TOOL SITE」様
+-　https://pixabay.com/ja/　「pixabay」様<br>
+-　https://www.nin-fan.net/　「TOOL SITE」様<br>
 -　https://fontawesome.com/　「font awesome」様
 
 ## 作成者
