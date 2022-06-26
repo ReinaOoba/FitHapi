@@ -1,8 +1,10 @@
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :ensure_tag_info, only: [:index, :create]
+  before_action :ensure_correct_tag, only: [:edit, :update]
+
 
   def index
-    @tags = Tag.all.page(params[:page]).per(10)
     @new_tag = Tag.new
   end
 
@@ -16,17 +18,14 @@ class Admin::TagsController < ApplicationController
     if @new_tag.save
       redirect_to admin_tags_path
     else
-      @tags = Tag.all
       render :index
     end
   end
 
   def edit
-    @tag = Tag.find(params[:id])
   end
 
   def update
-    @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
       flash[:notice] = "タグ編集に成功しました"
        redirect_to admin_tags_path
@@ -47,5 +46,15 @@ class Admin::TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:name)
   end
+
+  def ensure_tag_info
+    @tags = Tag.all.page(params[:page]).per(10)
+    @path = admin_tags_path
+  end
+
+  def ensure_correct_tag
+    @tag = Tag.find(params[:id])
+  end
+
 end
 

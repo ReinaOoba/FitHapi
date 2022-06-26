@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :withdrawal]
+  before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe]
   before_action :ensure_correct_articles_user, only: [:private_articles]
 
   def show
@@ -19,12 +19,19 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
   def withdrawal
     user = current_user
-    user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会しました"
-    redirect_to root_path
+    if user.account == 'guest'
+      redirect_to root_path, alert: 'ゲストユーザーの変更・退会はできません。'
+    else
+      user.update(is_deleted: true)
+      reset_session
+      flash[:notice] = "退会しました"
+      redirect_to root_path
+    end
   end
 
   def post_articles
@@ -49,7 +56,9 @@ private
 
   def ensure_correct_user
     @user = User.find_by(account: params[:account])
-    unless @user == current_user
+    if @user.account == 'guest'
+      redirect_to root_path, alert: 'ゲストユーザーの変更・退会はできません。'
+    elsif @user != current_user
       redirect_to user_path(current_user)
     end
   end

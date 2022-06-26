@@ -37,11 +37,14 @@
      <%= f.submit "新規登録", class: 'btn btn-sm btn-success col-4' %>
     </div>
       <% end %>
-    <p>お試しで使ってみたい方</p>
+    <div class="row">
+     <p>お試しで使ってみたい方</p>
     <%= link_to "ゲストログイン", users_guest_sign_in_path, class: 'btn btn-outline-secondary' %>
+    </div>
 
-    <p class="mini-title">既にご登録済みの方</p>
-    <div class= "ml-4 pb-4">
+
+    <div class= "mt-3 ml-4 pb-4 row">
+     <p>既にご登録済みの方</p>
      <%= render "public/shared/links"%>
     </div>
 </div>

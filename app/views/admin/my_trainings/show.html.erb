@@ -7,6 +7,6 @@
     <%= @my_training.set %>
   <h4>メモ</h4>
     <%= @my_training.note %>
-  <%= link_to "一覧に戻る", admin_user_my_trainings_path(@my_training.user), class: "btn btn-info" %>
+  <%= link_to "一覧に戻る", admin_user_my_trainings_path(@my_training.user), class: "btn btn-primary" %>
   <%= link_to "削除", admin_my_training_path(@my_training), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか?" %>
 </div>

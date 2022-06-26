@@ -16,8 +16,8 @@
           <%= link_to article.user.name, user_path(article.user) %>
         </td>
         <td><%= article.category.name %></td>
-        <td>いいね数：<%= article.favorites.count %></td>
-        <td>コメント数：<%= article.comments.count %></td>
+        <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>：<%= article.favorites.count %></td>
+        <td><i class="fas fa-comment" aria-hidden="true" style="color: blue;"></i>：<%= article.comments.count %></td>
       </tr>
     <% end %>
   </tbody>

@@ -65,13 +65,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
       root_path(resource)
     end
 
-  before_action :check_guest, only: [:destroy, :edit]
-    def check_guest
-      if resource.email == 'guest@example.jp'
-        redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
-      end
-    end
-
   private
 
     def configure_permitted_parameters

@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>体重記録</h3>
+  <div class="weights-record">
+    <table class="table table-border table-sm table-hover col-5">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>体重</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @weights.each do |weight| %>
+        <tr>
+          <td><%= weight.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %></td>
+          <td><%= weight.number.round(1) %></td>
+          <td><%= link_to "削除", admin_user_weight_path(@user, weight), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @weights %>
+  </div>
+</div>

@@ -9,15 +9,17 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :my_trainings, dependent: :destroy
-  
+  has_many :weights, dependent: :destroy
+
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :account, presence: true, uniqueness: true
-  validates :email, presence: true
+
+  validates :name, presence: true, length: { maximum: 15 }
+  validates :account, presence: true, uniqueness: true, length: { minimum: 4 }, format: { with: /\A[0-9a-zA-Z]+$\z/ }
+  validates :introduction, length: { maximum: 150 }
+  validates :email, presence: true, uniqueness: true
 
   def to_param
     account
@@ -31,7 +33,7 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   # フォローしたときの処理
 def follow(user_id)
   relationships.create(followed_id: user_id)

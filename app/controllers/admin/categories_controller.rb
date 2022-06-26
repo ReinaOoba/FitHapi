@@ -4,6 +4,7 @@ class Admin::CategoriesController < ApplicationController
   def index
     @categories = Category.all.page(params[:page]).per(10)
     @new_category = Category.new
+    @path = admin_categories_path
   end
 
   def show
@@ -16,7 +17,8 @@ class Admin::CategoriesController < ApplicationController
     if @new_category.save
       redirect_to admin_categories_path
     else
-      @categories = Category.all
+      @categories = Category.all.page(params[:page]).per(10)
+      @path = admin_categories_path
       render :index
     end
   end

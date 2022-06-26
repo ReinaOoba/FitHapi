@@ -7,13 +7,14 @@ devise_for :admin, controllers: {
 # 管理者ルーティング設定
 namespace :admin do
   root to: 'homes#top'
-  # get "search" => "searches#search"
+  get "search" => "searches#search"
   resources :users, only: [:index,:show,:edit,:update], param: :account do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     get 'post_articles' => 'users#post_articles'
     get 'favorite_articles' => 'users#favorite_articles', as: 'favorite_articles'
     resources :my_trainings, only: [:index]
+    resources :weights, only: [:index, :destroy]
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:destroy]
@@ -22,7 +23,6 @@ namespace :admin do
   resources :tags, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
   resources :my_trainings, only: [:show, :destroy]
-  resources :weights, only: [:index, :show, :edit, :update, :destroy]
 end
 
 # 会員用
@@ -41,13 +41,12 @@ end
   get 'about' => 'public/homes#about'
   get 'help' => 'public/homes#help'
   get 'policy_agreement' => 'public/homes#policy_agreement'
-# get "search" => "public/searches#search"　検索機能未実装
 
   scope module: :public do
     resources :users, except: [:destroy], param: :account do
       resource :relationships, only: [:create, :destroy]
       resources :my_trainings, only: [:index]
-      resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
+      resources :weights, only: [:index, :edit, :create, :update]
       resources :favorites, only: [:index]
       get 'unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
       patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
@@ -69,6 +68,7 @@ end
     resources :comments, only: [:edit, :update, :destroy]
     resources :categories, only: [:index, :show]
     resources :tags, only: [:create, :index, :show]
+    get "search" => "searches#search"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

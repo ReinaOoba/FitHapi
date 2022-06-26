@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark" >
+<nav class="navbar navbar-expand-lg border-bottom border-dark navbar-light" >
   <div class="container">
     <a class="navbar-brand" href="/admin"><span><%= image_tag 'FitHapi_logo.png' %>管理者</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,14 +24,9 @@
               <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link btn btn-outline-secondary mr-2" do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %>
             </li>
           </ul>
-          <!--<div class="search input-group"><!--検索窓,現在無効化-->
-            <!--%= form_with(url: admin_search_path, local: true, method: :get) do |f| %>-->
-              <!--%= f.text_field :word, placeholder: "Search" %>-->
-              <!--%= f.button :type => "submit", class: "btn btn-outline-warning" do %>-->
-                <!--i class="fas fa-search"></i>-->
-              <!--% end %>-->
-            <!--% end %>-->
-          <!--</div>-->
+          <div class="search input-group mt-1"><!--検索窓-->
+            <%= render "admin/searches/s_form" %>
+          </div>
         </div>
       </ul>
     </div>

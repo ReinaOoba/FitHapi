@@ -1,1 +1,34 @@
-<h3>体重一覧</h3>
+<div class="container">
+  <h3>体重記録</h3>
+  <% if @user.weights.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).exists? %>
+    <p>本日分のデータは入力済みです</p>
+  <% else %>
+    <div class="weights-form mt-3">
+      <%= render "layouts/errors", obj: @new_weight %>
+      <%= render "form", weight: @new_weight %>
+    </div>
+  <% end %>
+  <div class="weights-record">
+    <h3>直近7日間の記録</h3>
+
+      <%= line_chart @chart_weights, min: 40, discrete: true %>
+    <% @weights.each do |weight| %>
+    <table class="table table-border col-5">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>体重</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= weight.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d') %></td>
+          <td><%= weight.number.round(1) %></td>
+          <td><%= link_to "編集", edit_user_weight_path(@user, weight), class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>

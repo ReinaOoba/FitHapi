@@ -7,9 +7,8 @@ class Article < ApplicationRecord
   has_many :tags, through: :taglist
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :bookmarks, dependent: :destroy
 
-  enum status: { public: 0, privated: 1 }, _prefix: true
+  enum status: { opened: 0, privated: 1 }
 
   validates :user_id, presence: true
   validates :category_id, presence: true
@@ -36,4 +35,15 @@ class Article < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.search(word)
+    @articles_all = Article.where("title like :q OR text like :q ", q: "%#{word}%")
+  end
+
+  def self.title_search(word)
+    @articles_title = Article.where("title LIKE?","%#{word}%")
+  end
+
+  def self.text_search(word)
+    @articles_text = Article.where("text LIKE?","%#{word}%")
+  end
 end

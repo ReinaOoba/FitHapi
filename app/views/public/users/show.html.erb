@@ -38,19 +38,21 @@
           <tr>
             <th class="col-4 text-center">フォロワー</th>
             <td>
-              <%= link_to user_followers_path(@user) do %>
-                <%= @user.followers.count %> 人
-              <% end %>
+              <%= render "/public/relationships/followers_count", user: @user %>
             </td>
           </tr>
           <tbody>
         </table>
       </div>
     </div>
-    <% if @user == current_user %>
-    <div class="text-center">
-     <%= link_to "アカウント情報の変更", edit_user_path(@user), class:"btn btn-success" %>
-    </div>
+    <% if @user.account == "guest" && @user == current_user %>
+      <div class="text-center">
+        <label class="btn-faild">ゲストユーザーはアカウント編集できません</label>
+      </div>
+    <% elsif @user == current_user %>
+      <div class="text-center">
+       <%= link_to "アカウント情報の変更", edit_user_path(@user), class:"btn btn-success" %>
+      </div>
     <% end %>
     <div class="row">
       <div class="col-8 mx-2 ml-5">
@@ -69,6 +71,12 @@
           <h4 class="title col-5">いいねした記事</h4>
           <%= link_to "一覧を見る", user_favorite_articles_path(@user), class: "btn btn-primary" %>
         </div>
+        <% if @user == current_user %>
+        <div class="link-lists row mt-3">
+          <h4 class="title col-5">体重記録</h4>
+          <%= link_to "一覧を見る", user_weights_path(@user), class: "btn btn-primary" %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>

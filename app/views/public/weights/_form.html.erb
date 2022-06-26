@@ -1,0 +1,6 @@
+<%= form_with model: weight, url: @url, local:true do |f| %>
+  <div class="form-group row">
+    <%= f.number_field :number, placeholder: "本日の体重", step: '0.1', class: "input_form form-control col-4 mr-1" %>kg
+    <%= f.submit "登録", class: "btn btn-success ml-3" %>
+  </div>
+<% end %>

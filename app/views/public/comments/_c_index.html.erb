@@ -1,11 +1,11 @@
-<% if article.comments.exists? %>
+<% if comments.exists? %>
+  <% comments.each do |comment| %>
   <table>
     <tbody>
-      <% article.comments.each do |comment| %>
         <tr>
           <td>
             <%= link_to user_path(comment.user) do %>
-              <%= image_tag comment.user.get_profile_image(100,100) %><br>
+              <%= image_tag comment.user.get_profile_image(50,50), style: "border-radius: 50%" %><br>
               <%= comment.user.name %>
             <% end %>
           </td>
@@ -13,9 +13,15 @@
           <td>
             <% if comment.user == current_user %>
               <%= link_to "編集", edit_article_comment_path(article, comment), class: "btn btn-success" %>
+            <% end %>
+            <% if comment.article.user == current_user or comment.user == current_user%>
               <%= link_to "削除", article_comment_path(article, comment), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除しますか？' }, remote: true %>
             <% end %>
           </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= comment.created_at.to_s(:datetime_jp) %></td>
         </tr>
       <% end %>
     </tbody>

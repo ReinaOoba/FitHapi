@@ -52,6 +52,8 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -61,6 +63,10 @@ gem 'kaminari','~> 1.2.1'
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'dotenv-rails'
+gem 'rails-i18n'
+gem "enum_help"
+gem "chartkick"
+gem "groupdate"
 group :production do
   gem 'mysql2'
 end

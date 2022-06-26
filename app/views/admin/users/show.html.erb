@@ -62,6 +62,10 @@
             <td><%= link_to "一覧", admin_user_my_trainings_path(@user) %></td>
           </tr>
           <tr>
+            <th class="col-4 text-center">体重記録</th>
+            <td><%= link_to "一覧", admin_user_weights_path(@user) %></td>
+          </tr>
+          <tr>
             <th class="col-4 text-center">会員ステータス</th>
             <td>
               <% if @user.active_for_authentication? %>
