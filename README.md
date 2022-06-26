@@ -53,7 +53,7 @@
 - IDE：Cloud9
 
 ## 使用素材
--　https://pixabay.com/ja/　「pixabay」様<br>
+-　https://pixabay.com/ja/　<span>「pixabay」様</span><br>
 -　https://www.nin-fan.net/　「TOOL SITE」様<br>
 -　https://fontawesome.com/　「font awesome」様
 
