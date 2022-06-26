@@ -14,6 +14,7 @@ namespace :admin do
     get 'post_articles' => 'users#post_articles'
     get 'favorite_articles' => 'users#favorite_articles', as: 'favorite_articles'
     resources :my_trainings, only: [:index]
+    resources :weights, only: [:index, :destroy]
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:destroy]
@@ -22,7 +23,6 @@ namespace :admin do
   resources :tags, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   resources :taglists, only: [:edit, :update, :destroy]
   resources :my_trainings, only: [:show, :destroy]
-  resources :weights, only: [:index, :show, :edit, :update, :destroy]
 end
 
 # 会員用
@@ -47,7 +47,7 @@ end
     resources :users, except: [:destroy], param: :account do
       resource :relationships, only: [:create, :destroy]
       resources :my_trainings, only: [:index]
-      resources :weights, only: [:index, :new, :edit, :create, :update, :destroy]
+      resources :weights, only: [:index, :edit, :create, :update]
       resources :favorites, only: [:index]
       get 'unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
       patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'

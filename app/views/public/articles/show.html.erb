@@ -4,7 +4,7 @@
       <h3 class="mb-3"><%= @article.title %></h3>
     </div>
     <div class="article-day row mt-3">
-      <p>投稿日: <%= @article.created_at.to_s(:datetime_jp) %></p>
+      <p>投稿日: <%= @article.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M') %></p>
     </div>
     <div class="article-text">
       <%= safe_join(@article.text.split("\n"),tag(:br)) %>

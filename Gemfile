@@ -66,6 +66,7 @@ gem 'dotenv-rails'
 gem 'rails-i18n'
 gem "enum_help"
 gem "chartkick"
+gem "groupdate"
 group :production do
   gem 'mysql2'
 end

@@ -3,7 +3,9 @@ class Public::WeightsController < ApplicationController
 
   def index
     @new_weight = Weight.new
-    @weights = @user.weights
+    @chart_weights = Weight.where(user_id: @user.id).order(created_at: :DESC).limit(7).group_by_day(:created_at, format: "%Y/%m/%d").sum(:number)
+    @weights = @user.weights.order(created_at: :DESC).limit(7)
+    @url = user_weights_path
   end
 
   def create
@@ -16,10 +18,18 @@ class Public::WeightsController < ApplicationController
     end
   end
 
-  def destroy
-    weight = Weight.find([params:id])
-    weight.delete
-    redirect_to user_weights_path(@user)
+  def edit
+    @weight = Weight.find(params[:id])
+    @url = user_weight_path
+  end
+
+  def update
+    @weight = Weight.find(params[:id])
+    if @weight.update(weight_params)
+      redirect_to user_weights_path(@user)
+    else
+      render :edit
+    end
   end
 
   private
@@ -31,7 +41,8 @@ class Public::WeightsController < ApplicationController
   def ensure_correct_user
     @user = User.find_by(account: params[:user_account])
     unless @user == current_user
-      redirect_to user_path(current_user), alart: '他ユーザーの体重記録の閲覧・編集はできません'
+      redirect_to user_path(@user),notice: "他ユーザーの体重の閲覧・編集はできません"
     end
   end
+
 end

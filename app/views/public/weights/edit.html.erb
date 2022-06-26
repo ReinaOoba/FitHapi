@@ -1,1 +1,4 @@
-<h3>体重編集</h3>
+<div class="container">
+  <h3><%= @weight.created_at.strftime('%Y/%m/%d') %>の体重</h3>
+  <%= render "form", weight: @weight %>
+</div>
