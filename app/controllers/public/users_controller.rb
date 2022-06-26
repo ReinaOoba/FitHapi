@@ -34,8 +34,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-
-
   def post_articles
    @user = User.find_by(account: params[:user_account])
    @articles = @user.articles.where(status: 0).page(params[:page])
