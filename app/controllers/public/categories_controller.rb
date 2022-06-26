@@ -1,8 +1,8 @@
 class Public::CategoriesController < ApplicationController
   def index
     @category = Category.all
-    @categories = Category.includes(:articles).where(articles: {status: 0}).limit(4)
-    @tags = Tag.includes(:articles).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)
+    @categories = Category.includes(:articles).where(articles: {status: 0}).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)
+    @tags = Tag.includes(:articles).where(articles: {status: 0}).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)
   end
 
   def show

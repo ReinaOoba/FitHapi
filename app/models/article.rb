@@ -7,7 +7,6 @@ class Article < ApplicationRecord
   has_many :tags, through: :taglist
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :bookmarks, dependent: :destroy
 
   enum status: { opened: 0, privated: 1 }
 
