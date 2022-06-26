@@ -53,9 +53,9 @@
 - IDE：Cloud9
 
 ## 使用素材
--　[pixabay](https://pixabay.com/ja/)様<br>
--　https://www.nin-fan.net/　<span>「TOOL SITE」様</span><br>
--　https://fontawesome.com/　<span>「font awesome」様</span>
+-　[pixabay様](https://pixabay.com/ja/)<br>
+-　[TOOL SITE様](https://www.nin-fan.net/)<br>
+-　[font awesome様](https://fontawesome.com/)
 
 ## 作成者
 大場 伶奈<br>
