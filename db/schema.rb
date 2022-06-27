@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_06_08_110523) do
     t.integer "user_id", null: false
     t.integer "category_id", null: false
     t.string "title", default: "", null: false
-    t.text "text", default: "", null: false
+    t.text "text", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_06_08_110523) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "article_id", null: false
-    t.text "text", default: "", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2022_06_08_110523) do
     t.integer "article_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id", "tag_id"], name: "index_Taglists_on_article_id_and_tag_id", unique: true
+    t.index ["article_id", "tag_id"], name: "index_taglists_on_article_id_and_tag_id", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
