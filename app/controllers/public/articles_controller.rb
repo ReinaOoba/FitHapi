@@ -41,11 +41,19 @@ class Public::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     tag_list = params[:article][:name].split('　')
      if @article.update(article_params)
-       @old_relations=Taglist.where(article_id: @article.id)
-        @old_relations.each do |relation|
+      @old_relations=Taglist.where(article_id: @article.id)
+      @old_relations.each do |relation|
         relation.delete
+      end
+      @article.save_tag(tag_list)
+       
+      if params[:article][:article_image_ids]
+        params[:article][:article_image_ids].each do |image_id|
+          article_image = @article.article_images.find(image_id)
+          article_image.purge # deleteと同じ意味だが画像はpurge
         end
-       @article.save_tag(tag_list)
+      end
+       
        redirect_to article_path(@article), notice: '更新完了しました'
      else
        @categories = Caregory.all

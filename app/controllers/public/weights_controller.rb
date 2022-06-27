@@ -10,6 +10,11 @@ class Public::WeightsController < ApplicationController
 
   def create
     @new_weight = Weight.new(weight_params)
+    if @user.weights.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).exists?
+      redirect_to user_weights_path(@user)
+      return
+    end
+
     if @new_weight.save
       redirect_to user_weights_path(@user)
     else
