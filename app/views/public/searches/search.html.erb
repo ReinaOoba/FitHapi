@@ -8,29 +8,21 @@
   </div>
 
   <div class="search_methods_box d-flex flex-row bd-highlight mb-3">
-    <div class="search_method">
+    <div class="search_method <% if @range == "Article" %>select_method<% end %>">
       <%= link_to "記事全体", search_path(range: "Article", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method <% if @range == "Title" %>select_method<% end %>">
       <%= link_to "記事タイトル", search_path(range: "Title", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method  <% if @range == "Text" %>select_method<% end %>">
       <%= link_to "記事本文", search_path(range: "Text", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method  <% if @range == "Tag" %>select_method<% end %>">
       <%= link_to "タグ", search_path(range: "Tag", word: @word), class:"btn" %>
     </div>
   </div>
 
-<% if @range == "Article" %>
-  <h2>「<%= @word %>」の記事検索結果</h2>
-<% elsif @range == "Title" %>
-  <h2>「<%= @word %>」の記事タイトル検索結果</h2>
-  <% elsif @range == "Text" %>
-  <h2>「<%= @word %>」の記事本文検索結果</h2>
-<% else %>
-  <h2>「<%= @word %>」のタグ検索結果</h2>
-<% end %>
+  <h2>「<%= @word %>」の検索結果</h2>
 
 <table class="table table-hover table-inverse">
   <% if @range == "Article" && @articles_all.present?  %>

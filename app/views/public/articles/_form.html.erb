@@ -23,6 +23,21 @@
    <%= f.label :article_images, "画像", class: "col-3" %>
    <%= f.file_field :article_images, multiple: true, accept: "image/*" %>
   </div>
+  
+  <% if article.article_images.count > 0 %>
+    <div class="form-group row">
+      <%= f.label :article_images, "削除する画像にチェック入れてください", class: "col-3" %>
+      
+      <div class="col-9 row">
+        <% article.article_images.each do |image| %>
+          <div class="col-4 d-flex justify-content-around align-items-center">
+            <%= f.check_box :article_image_ids, {multiple: true}, image.id, false %>
+            <%= image_tag image, size: "100x100" %> <br>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-group row pb-3 mb-0">
    <%= f.label :公開設定, class: "col-3" %>
