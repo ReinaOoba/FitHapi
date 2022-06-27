@@ -40,7 +40,6 @@ end
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
   get 'help' => 'public/homes#help'
-  get 'policy_agreement' => 'public/homes#policy_agreement'
 
   scope module: :public do
     resources :users, except: [:destroy], param: :account do
