@@ -40,6 +40,12 @@ class Public::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     tag_list = params[:article][:name].split('　')
+    if params[:article][:article_images]
+      params[:article][:article_images].each do |article_image_id|
+        image = @article.article_images.find(article_image_id)
+        image.purge
+      end
+    end
      if @article.update(article_params)
        @old_relations=Taglist.where(article_id: @article.id)
         @old_relations.each do |relation|
@@ -76,7 +82,7 @@ class Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text, :category_id, :taglist_id, :status, :article_video, article_images: [] ).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :text, :category_id, :taglist_id, :status, article_images: [] ).merge(user_id: current_user.id)
   end
 
 

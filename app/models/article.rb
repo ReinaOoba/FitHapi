@@ -1,6 +1,5 @@
 class Article < ApplicationRecord
   has_many_attached :article_images, dependent: :destroy
-  has_one_attached :article_video, dependent: :destroy
   belongs_to :user
   belongs_to :category
   has_many :taglist, dependent: :destroy

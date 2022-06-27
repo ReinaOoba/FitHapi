@@ -24,6 +24,14 @@
    <%= f.file_field :article_images, multiple: true, accept: "image/*" %>
   </div>
 
+  <% if article.article_images.present? %>
+    <p>現在登録されている画像（削除するものはチェックしてください）</p>
+    <% article.article_images.each do |article_image| %>
+      <%= f.check_box :article_images, {multiple: true}, article_image.id, false %>
+      <%= image_tag(article_image, width:100)  %> <br>
+    <% end %>
+  <% end %>
+
   <div class="form-group row pb-3 mb-0">
    <%= f.label :公開設定, class: "col-3" %>
    <%= f.select :status, Article.statuses_i18n.invert, {}, { class: 'article-opened' } %>
