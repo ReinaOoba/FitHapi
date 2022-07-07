@@ -53,7 +53,6 @@ class Public::ArticlesController < ApplicationController
           article_image.purge # deleteと同じ意味だが画像はpurge
         end
       end
-
        redirect_to article_path(@article), notice: '更新完了しました'
      else
        @categories = Caregory.all
@@ -90,6 +89,4 @@ class Public::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :text, :category_id, :taglist_id, :status, :article_video, article_images: [] ).merge(user_id: current_user.id)
   end
-
-
 end

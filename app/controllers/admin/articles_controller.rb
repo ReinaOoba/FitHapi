@@ -10,11 +10,6 @@ class Admin::ArticlesController < ApplicationController
     @article_tags = @article.tags
   end
 
-  def edit
-    @article = Article.find(params[:id])
-    @categories = Category.all
-  end
-
   def destroy
     article = Article.find(params[:id])
     article.delete
