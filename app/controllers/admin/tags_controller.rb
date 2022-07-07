@@ -36,9 +36,12 @@ class Admin::TagsController < ApplicationController
 
   def destroy
     tag = Tag.find(params[:id])
-    tag.delete
-    flash[:notice] = "タグを削除しました"
-    redirect_to admin_tags_path
+    if tag.articles.exists?
+      redirect_to admin_tags_path, notice: "紐づけされている記事があるため削除できません"
+    else
+      tag.delete
+      redirect_to admin_tags_path, notice: "タグを削除しました"
+    end
   end
 
   private
