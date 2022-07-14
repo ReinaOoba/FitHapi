@@ -1,7 +1,7 @@
 <div class="container">
     <h3><%= @category.name %>カテゴリーの記事</h3>
     <% if @articles.exists? %>
-      <%= render "list", articles: @articles %>
+      <%= render "admin/shared/article_list", articles: @articles %>
     <% else %>
       <p>投稿記事はありません</p>
     <% end %>

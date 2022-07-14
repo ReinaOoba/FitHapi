@@ -2,6 +2,7 @@
 input.btn-success, a.btn-success {
   border: 2px solid #00CC00;
   background: #00CC00;
+  border-radius: 50vh;
   color: #fff;
 }
 
@@ -14,6 +15,7 @@ input.btn-success:hover, a.btn-success:hover {
 button.btn-outline-success {
   border: 2px solid #00CC00;
   background: #00CC00;
+  border-radius: 50vh;
   color: #fff;
 }
 
@@ -27,6 +29,7 @@ button.btn-outline-success:hover {
 input.btn-primary, a.btn-primary {
   border: 2px solid #FF773E;
   background: #FF773E;
+  border-radius: 50vh;
   color: #fff;
 }
 
@@ -40,6 +43,7 @@ input.btn-primary:hover, a.btn-primary:hover {
 input.btn-outline-primary,a.btn-outline-primary {
   border: 2px solid #FF773E;
   background: #FFF;
+  border-radius: 50vh;
   color: #FF773E;
 }
 
@@ -53,6 +57,7 @@ input.btn-outline-primary:hover, a.btn-outline-primary:hover {
 input.btn-danger, a.btn-danger {
   border: 2px solid #9057FF;
   background: #9057FF;
+  border-radius: 50vh;
   color: #fff;
 }
 
@@ -66,6 +71,7 @@ input.btn-danger:hover, a.btn-danger:hover {
 input.btn-outline-secondary,a.btn-outline-secondary {
   border: 2px solid #FF9933;
   background: #FFFFAA;
+  border-radius: 50vh;
   color: #000;
 }
 
@@ -80,6 +86,7 @@ input.btn-outline-secondary:hover, a.btn-outline-secondary:hover {
   border: 2px solid #C0C0C0;
   background: #C0C0C0;
   color: #fff;
+  border-radius: 50vh;
   padding: 5px 5px;
 }
 
@@ -87,8 +94,8 @@ input.btn-outline-secondary:hover, a.btn-outline-secondary:hover {
 input.btn-warning, a.btn-warning {
   border: 2px solid #FF367F;
   margin-left: 2px;
-  padding: 1px 0;
   background: #FF367F;
+  border-radius: 50vh;
   color: #fff;
 }
 
@@ -101,6 +108,8 @@ input.btn-warning:hover, a.btn-warning:hover {
 input.btn-outline-warning,a.btn-outline-warning {
   border: 2px solid #FF367F;
   background: #FFF;
+  border-radius: 50vh;
+  margin-left: 2px;
   color: #FF367F;
 }
 

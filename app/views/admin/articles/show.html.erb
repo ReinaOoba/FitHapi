@@ -1,35 +1,49 @@
 <div class="container py-3">
-　<h3 class="mini-title mb-3"><%= @article.title %></h3>
-　<p> 投稿者：<%= @article.user.name %>@<%= @article.user.account %></p>
-  <div>
-    <div>
-      <%= safe_join(@article.text.split("\n"),tag(:br)) %>
+　<div class="article-contents mx-auto col-10">
+    <div class="article-title text-center border-bottom">
+      <h3 class="mb-3">
+        <%= @article.title %>
+        <font size="2" class="ml-4">投稿日: <%= @article.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M') %></font>
+      </h3>
     </div>
-      <% @article.article_images.each do |article_image| %>
-        <%= image_tag(article_image, width:300) %>
-      <% end %>
-    <div class="article_info">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <th class="col-2">カテゴリー</th>
-            <td><%= @article.category.name %></td>
-          </tr>
-          <tr>
-            <th class="col-2">タグ</th>
-            <td><%= @article.tags.map(&:name).join(', ') %></i></td>
-          </tr>
-          <tr>
-            <th class="col-2">投稿日</th>
-            <td><%= @article.created_at.to_s(:datetime_jp) %></td>
-          </tr>
-          <tr>
-            <th class="col-2">公開設定</th>
-            <td><%= @article.status_i18n %></td>
-          </tr>
-          <tr>
-        </tbody>
-      </table>
+    <div class="article-box col-9 mx-auto mt-3">
+      <%= safe_join(@article.text.split("\n"),tag(:br)) %>
+      <div class="article-image mt-3 mb-3">
+        <% @article.article_images.each do |article_image| %>
+          <%= image_tag(article_image, width:250)  %>
+        <% end %>
+      </div>
+      <div class="article_info border-bottom">
+        <table class="table table-borderless col-6">
+          <tbody>
+            <tr>
+              <th>投稿者</th>
+              <td><%= link_to user_path(@article.user) do %>
+                  <%= @article.user.name %>@<%= @article.user.account %>
+                  <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>カテゴリー</th>
+              <td><%= link_to @article.category.name, category_path(@article.category) %></td>
+            </tr>
+            <tr>
+              <th>タグ</th>
+              <td>
+                <% @article_tags.each do |tag|%>
+                  <%= link_to tag.name, tag_path(tag) %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>公開設定</th>
+              <td><%= @article.status_i18n %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
       <div class="mt-4">
         <%= link_to "削除", admin_article_path(@article), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか?"  %>
       </div>

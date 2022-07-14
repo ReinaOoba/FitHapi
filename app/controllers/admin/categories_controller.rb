@@ -39,9 +39,12 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     category = Category.find(params[:id])
-    category.delete
-    flash[:notice] = "カテゴリーを削除しました"
-    redirect_to admin_categories_path
+    if category.articles.exists?
+      redirect_to admin_categories_path, notice: "紐づけされている記事があるため削除できません"
+    else
+      category.delete
+      redirect_to admin_categories_path, notice: "カテゴリーを削除しました"
+    end
   end
 
   private

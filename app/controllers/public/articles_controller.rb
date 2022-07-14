@@ -46,14 +46,13 @@ class Public::ArticlesController < ApplicationController
         relation.delete
       end
       @article.save_tag(tag_list)
-       
+
       if params[:article][:article_image_ids]
         params[:article][:article_image_ids].each do |image_id|
           article_image = @article.article_images.find(image_id)
           article_image.purge # deleteと同じ意味だが画像はpurge
         end
       end
-       
        redirect_to article_path(@article), notice: '更新完了しました'
      else
        @categories = Caregory.all
@@ -63,6 +62,10 @@ class Public::ArticlesController < ApplicationController
 
   def destroy
     article = Article.find(params[:id])
+      if article.id == 1
+        redirect_to root_path, notice: 'この記事は削除できません'
+        return
+      end
     article.delete
     redirect_to root_path
   end
@@ -86,6 +89,4 @@ class Public::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :text, :category_id, :taglist_id, :status, :article_video, article_images: [] ).merge(user_id: current_user.id)
   end
-
-
 end

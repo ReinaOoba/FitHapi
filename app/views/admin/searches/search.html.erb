@@ -8,56 +8,48 @@
   </div>
 
   <div class="search_methods_box d-flex flex-row bd-highlight mb-3">
-    <div class="search_method">
+    <div class="search_method <% if @range == "Article" %>select_method<% end %>">
       <%= link_to "記事全体", admin_search_path(range: "Article", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method <% if @range == "Title" %>select_method<% end %>">
       <%= link_to "記事タイトル", admin_search_path(range: "Title", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method  <% if @range == "Text" %>select_method<% end %>">
       <%= link_to "記事本文", admin_search_path(range: "Text", word: @word), class:"btn" %>
     </div>
-    <div class="search_method">
+    <div class="search_method  <% if @range == "Tag" %>select_method<% end %>">
       <%= link_to "タグ", admin_search_path(range: "Tag", word: @word), class:"btn" %>
     </div>
   </div>
 
-<% if @range == "Article" %>
-  <h2>「<%= @word %>」の記事検索結果</h2>
-<% elsif @range == "Title" %>
-  <h2>「<%= @word %>」の記事タイトル検索結果</h2>
-  <% elsif @range == "Text" %>
-  <h2>「<%= @word %>」の記事本文検索結果</h2>
-<% else %>
-  <h2>「<%= @word %>」のタグ検索結果</h2>
-<% end %>
+  <h2>「<%= @word %>」の検索結果</h2>
 
-<table class="table table-hover table-inverse">
-  <% if @range == "Article" && @articles_all.present?  %>
-    <%= render "admin/articles/list", articles: @articles_all %>
+  <table class="table table-hover table-inverse">
+    <% if @range == "Article" && @articles_all.present?  %>
+      <%= render "admin/articles/list", articles: @articles_all %>
 
-  <% elsif @range == "Title" && @articles_title.present? %>
-        <%= render "admin/articles/list", articles: @articles_title %>
+    <% elsif @range == "Title" && @articles_title.present? %>
+      <%= render "admin/articles/list", articles: @articles_title %>
 
-  <% elsif @range == "Text" && @articles_text.present? %>
-        <%= render "admin/articles/list", articles: @articles_text %>
+    <% elsif @range == "Text" && @articles_text.present? %>
+      <%= render "admin/articles/list", articles: @articles_text %>
 
-  <% elsif @range == "Tag" && @tags.present? %>
-    <table class="table table-hover table-inverse text-center">
-      <tbody>
-      <% @tags.each do |tag| %>
-        <tr>
-          <td>
-            <%= link_to admin_tag_path(tag) do %>
-              <%= tag.name %>（<%= tag.articles.count %>件）
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <label>検索結果がありません。</label>
-  <% end %>
-</table>
+    <% elsif @range == "Tag" && @tags.present? %>
+      <table class="table table-hover table-inverse text-center">
+        <tbody>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td>
+              <%= link_to admin_tag_path(tag) do %>
+                <%= tag.name %>（<%= tag.articles.count %>件）
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <label>検索結果がありません。</label>
+    <% end %>
+  </table>
 </div>
