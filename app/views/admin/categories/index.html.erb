@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th>登録ワード</th>
-            <th>登録件数</th>
+            <th>登録記事数</th>
             <th></th>
           </tr>
         </thread>
@@ -26,8 +26,8 @@
         <%= paginate @categories %>
       </div>
     <% else %>
-    <div class="col-4 mx-auto mt-5">
-      <p class="mt-4 pb-3">登録済みカテゴリーはありません</p>
-    </div>
+      <div class="col-4 mx-auto mt-5">
+        <p class="mt-4 pb-3">登録済みカテゴリーはありません</p>
+      </div>
     <% end %>
 </div>

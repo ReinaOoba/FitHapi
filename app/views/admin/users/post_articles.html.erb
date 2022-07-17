@@ -16,8 +16,8 @@
             <td><%= link_to article.title, admin_article_path(article) %></td>
             <td><%= link_to article.category.name, admin_category_path(article.category) %></td>
             <td><%= article.status_i18n %></td>
-            <td>いいね数：<%= article.favorites.count %></td>
-            <td>コメント数：<%= article.comments.count %></td>
+            <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>：<%= article.favorites.count %></td>
+            <td><i class="fas fa-comment" aria-hidden="true" style="color: blue;"></i>：<%= article.comments.count %></td>
           </tr>
         <% end %>
         </tbody>
