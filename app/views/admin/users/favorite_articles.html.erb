@@ -14,7 +14,7 @@
         <% @favorites.each do |favorite| %>
           <tr>
             <td><%= link_to favorite.article.title, admin_article_path(favorite.article) %></td>
-            <td><%= favorite.article.user.name %></td>
+            <td><%= link_to favorite.article.user.name, admin_user_path(favorite.article.user) %></td>
             <td><%= favorite.article.favorites.count %></td>
             <td><%= favorite.article.comments.count %></td>
           </tr>
