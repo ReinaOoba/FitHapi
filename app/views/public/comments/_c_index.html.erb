@@ -9,7 +9,9 @@
               <%= comment.user.name %>
             <% end %>
           </td>
-          <td><%= comment.text %></td>
+          <td><%= safe_join(comment.text.split("\n"), tag(:br)) %></td>
+        </tr>
+        <tr>
           <td>
             <% if comment.user == current_user %>
               <%= link_to "編集", edit_article_comment_path(article, comment), class: "btn btn-success" %>
@@ -18,10 +20,7 @@
               <%= link_to "削除", article_comment_path(article, comment), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除しますか？' }, remote: true %>
             <% end %>
           </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= comment.created_at.to_s(:datetime_jp) %></td>
+          <td class="pl-2">投稿日：<%= comment.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M') %></td>
         </tr>
       <% end %>
     </tbody>
