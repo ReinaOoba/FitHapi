@@ -18,20 +18,20 @@
           <tbody>
             <tr>
               <th>投稿者</th>
-              <td><%= link_to user_path(@article.user) do %>
+              <td><%= link_to admin_user_path(@article.user) do %>
                   <%= @article.user.name %>@<%= @article.user.account %>
                   <% end %>
               </td>
             </tr>
             <tr>
               <th>カテゴリー</th>
-              <td><%= link_to @article.category.name, category_path(@article.category) %></td>
+              <td><%= link_to @article.category.name, admin_category_path(@article.category) %></td>
             </tr>
             <tr>
               <th>タグ</th>
               <td>
                 <% @article_tags.each do |tag|%>
-                  <%= link_to tag.name, tag_path(tag) %>
+                  <%= link_to tag.name, admin_tag_path(tag) %>
                 <% end %>
               </td>
             </tr>
