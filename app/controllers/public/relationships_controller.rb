@@ -4,11 +4,13 @@ class Public::RelationshipsController < ApplicationController
   def create
     @user = User.find_by(account: params[:user_account])
     current_user.follow(@user.id)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @user = User.find_by(account: params[:user_account])
     current_user.unfollow(@user.id)
+    redirect_back(fallback_location: root_path)
   end
 
   def followings
