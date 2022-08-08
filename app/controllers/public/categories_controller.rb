@@ -1,4 +1,5 @@
 class Public::CategoriesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @category = Category.all
     @categories = Category.includes(:articles).where(articles: {status: 0}).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)

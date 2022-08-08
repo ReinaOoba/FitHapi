@@ -1,4 +1,6 @@
 class Public::TagsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @tag = Tag.all
     @categories = Category.includes(:articles).where(articles: {status: 0}).sort {|a,b| b.articles.size <=> a.articles.size}.take(4)

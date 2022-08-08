@@ -1,5 +1,5 @@
 class Public::ArticlesController < ApplicationController
-  before_action :authenticate_user!, only:[:edit, :new, :create, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     @articles = Article.where(status: 0).page(params[:page])
