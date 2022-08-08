@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe]
   before_action :ensure_correct_articles_user, only: [:private_articles]
 

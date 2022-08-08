@@ -1,5 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
+    unless user_signed_in?
+      redirect_to about_path
+    end
     articles= Article.where(status: 0)
     @new_arrival_articles = articles.order(created_at: :DESC).limit(4)
     @hot_articles = articles.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}.take(4)
