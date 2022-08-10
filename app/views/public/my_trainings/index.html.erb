@@ -35,7 +35,7 @@
 <% else %>
   <p>登録済みのまいトレはありません～！</p>
   <% if @user == current_user %>
-    <%=link_to "まいトレ作成！", new_my_training_path, class: "btn btn-success" %>
+    <%= link_to "まいトレ作成！", new_my_training_path, class: "btn btn-success" %>
   <% end %>
 <% end %>
 </div>
