@@ -27,13 +27,10 @@
 <table class="table table-hover table-inverse">
   <% if @range == "Article" && @articles_all.present?  %>
     <%= render "public/articles/list", articles: @articles_all %>
-
   <% elsif @range == "Title" && @articles_title.present? %>
         <%= render "public/articles/list", articles: @articles_title %>
-
   <% elsif @range == "Text" && @articles_text.present? %>
         <%= render "public/articles/list", articles: @articles_text %>
-
   <% elsif @range == "Tag" && @tags.present? %>
     <table class="table table-hover table-inverse text-center">
       <tbody>
